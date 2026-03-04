@@ -1,9 +1,10 @@
 export const ROLES = {
-    "ENTRY": "Entry Level Engineer",
+    "ENTRY": "Entry-level Software Engineer",
     "NORMAL": "Software Engineer",
     "SENIOR": "Senior Software Engineer",
-    "PRINCIPAL": "Principal Software Engineer",
-    "STAFF": "Staff Software Engineer"
+    "SENIOR_II": "Senior Software Engineer II",
+    "STAFF": "Staff Software Engineer",
+    "PRINCIPAL": "Principal Software Engineer"
 }
 
 export var quizQuestions = [
@@ -23,7 +24,15 @@ export var quizQuestions = [
                 type: ROLES.SENIOR
             },
             {
-                content: "I’m usually the one who figure these thing out for others. That's how I work",
+                content: "I proactively seek to understand the business needs and talk with internal customers to serve them better",
+                type: ROLES.SENIOR_II
+            },
+            {
+                content: "I'm usually the one who figures these things out for others, driving alignment across teams",
+                type: ROLES.STAFF
+            },
+            {
+                content: "I define and shape the business needs myself, representing them to management and beyond",
                 type: ROLES.PRINCIPAL
             }
         ]
@@ -32,7 +41,7 @@ export var quizQuestions = [
         question: "When you lead projects, how big are they (number of people involved / time)?",
         answers: [
             {
-                content: "I help with other projects; haven't lead one myself yet",
+                content: "I help with other projects; haven't led one myself yet",
                 type: ROLES.ENTRY
             },
             {
@@ -44,11 +53,15 @@ export var quizQuestions = [
                 type: ROLES.SENIOR
             },
             {
-                content: "Me and 5-15 people from various teams, for a few weeks to a few months",
+                content: "I lead large projects (>4w of work) spanning multiple systems with support from peers",
+                type: ROLES.SENIOR_II
+            },
+            {
+                content: "Me and 5-15 people from various teams, for a few weeks to a few months, driving adoption and momentum",
                 type: ROLES.STAFF
             },
             {
-                content: "I lead some of the biggest initiatives in the company, having at least 10 people working with me for more than a year",
+                content: "I lead the biggest multi-year cross-group initiatives in the company",
                 type: ROLES.PRINCIPAL
             }
         ]
@@ -61,15 +74,23 @@ export var quizQuestions = [
                 type: ROLES.ENTRY
             },
             {
-                content: "Yes, I know the goals well. I don’t know the rational for picking them",
+                content: "Yes, I know the goals well. I don't know the rationale for picking them",
                 type: ROLES.NORMAL
             },
             {
-                content: "I can explain the goals and why they’re critical for our success to other teammates",
+                content: "I can explain the goals and why they're critical for our success to other teammates",
                 type: ROLES.SENIOR
             },
             {
-                content: "I use the company’s goals to attract talent during interviews and while helping to onboard new teammates",
+                content: "I actively use the company's goals to drive my team's backlog and quarterly planning",
+                type: ROLES.SENIOR_II
+            },
+            {
+                content: "I understand the yearly goals of many teams in the group and how they map to business impact",
+                type: ROLES.STAFF
+            },
+            {
+                content: "I use the company's goals to define what the group should invest in and attract talent",
                 type: ROLES.PRINCIPAL
             }
         ]
@@ -90,7 +111,15 @@ export var quizQuestions = [
                 type: ROLES.SENIOR
             },
             {
-                content: "It’s very common to hear from me on various projects and initiatives by email, Slack and f2f. Many people outside of my team know my work.",
+                content: "I regularly market and advertise projects, creating excitement for users and driving adoption",
+                type: ROLES.SENIOR_II
+            },
+            {
+                content: "It's very common to hear from me on various projects and initiatives. Many people outside of my team know my work.",
+                type: ROLES.STAFF
+            },
+            {
+                content: "I represent major company efforts to management, customers, press and conferences.",
                 type: ROLES.PRINCIPAL
             }
         ]
@@ -111,7 +140,15 @@ export var quizQuestions = [
                 type: ROLES.SENIOR
             },
             {
-                content: "People consult with me on everything they feel is a big challenge. Even if I don’t have specific context, they feel comfortable sharing and getting my perspective.",
+                content: "I contribute to all major architectural decisions in my domain and read all tech specs. People seek me out for complex design reviews",
+                type: ROLES.SENIOR_II
+            },
+            {
+                content: "People consult with me on everything they feel is a big challenge. Even if I don't have specific context, they feel comfortable sharing and getting my perspective.",
+                type: ROLES.STAFF
+            },
+            {
+                content: "I'm the go-to person on company-wide critical projects. I create the technical vision and anticipate future needs.",
                 type: ROLES.PRINCIPAL
             }
         ]

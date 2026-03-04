@@ -39,16 +39,16 @@ function Result(props) {
             </div>
             <img className="icon" src={engeering} />
           </Link>
-          <Link to={`/results/project-leadership/${parsedRole}`}>
+          <Link to={`/results/delivery/${parsedRole}`}>
             <div className="card-result">
-              <span className="title">Project Leadership</span>
+              <span className="title">Delivery</span>
               <span className="text">The way you manage and deliver a project, end-to-end and others.</span>
             </div>
             <img className="icon" src={project} />
           </Link>
-          <Link to={`/results/business-involvement/${parsedRole}`}>
+          <Link to={`/results/business-impact/${parsedRole}`}>
             <div className="card-result">
-              <span className="title">Business Involvement</span>
+              <span className="title">Business Impact</span>
               <span className="text">The way your hard earned work correlates with the business goals.</span>
             </div>
             <img className="icon" src={business} />

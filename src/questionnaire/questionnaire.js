@@ -87,32 +87,48 @@ export class Questionnaire extends Component {
 
     getResults() {
         const answersCount = this.state.answersCount;
-        const rolesChosen = Object.keys(answersCount)
+        const rolesChosen = Object.keys(answersCount);
 
-        const allEqual = Object.keys(answersCount).length === 1;
-        if (allEqual) {
-            const roleChosen = Object.keys(answersCount)[0];
-            if (roleChosen === ROLES.ENTRY) {
-                return ROLES.ENTRY;
+        // Find the role with the most answers
+        let maxCount = 0;
+        let maxRole = ROLES.ENTRY;
+        for (const [role, count] of Object.entries(answersCount)) {
+            if (count > maxCount) {
+                maxCount = count;
+                maxRole = role;
             }
         }
 
-        if (rolesChosen.length === 2 && rolesChosen.includes(ROLES.ENTRY) && rolesChosen.includes(ROLES.NORMAL)) {
-            return ROLES.NORMAL;
+        // If there's a clear winner, return it
+        if (maxCount >= 3) {
+            return maxRole;
         }
 
-        const notAChild = rolesChosen.every(role => ![ROLES.ENTRY, ROLES.NORMAL].includes(role));
-        if (notAChild) {
-            return ROLES.STAFF;
+        // Use a ranking system for tie-breaking
+        const roleRank = {
+            [ROLES.ENTRY]: 1,
+            [ROLES.NORMAL]: 2,
+            [ROLES.SENIOR]: 3,
+            [ROLES.SENIOR_II]: 4,
+            [ROLES.STAFF]: 5,
+            [ROLES.PRINCIPAL]: 6,
+        };
+
+        // Calculate weighted average
+        let totalWeight = 0;
+        let totalScore = 0;
+        for (const [role, count] of Object.entries(answersCount)) {
+            totalWeight += count;
+            totalScore += (roleRank[role] || 1) * count;
         }
+        const avgScore = totalScore / totalWeight;
 
-        const superUnChild = rolesChosen.every(role => ![ROLES.ENTRY, ROLES.NORMAL, ROLES.SENIOR].includes(role));
-        if (superUnChild) {
-            return ROLES.PRINCIPAL;
-        }
-
-
-        return ROLES.SENIOR;
+        if (avgScore <= 1.5) return ROLES.ENTRY;
+        if (avgScore <= 2.5) return ROLES.NORMAL;
+        if (avgScore <= 3.5) return ROLES.SENIOR;
+        if (avgScore <= 4.5) return ROLES.SENIOR_II;
+        if (avgScore <= 5.5) return ROLES.STAFF;
+        return ROLES.PRINCIPAL;
     }
 
     setResults(result) {

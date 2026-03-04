@@ -33,7 +33,7 @@ export default function Results() {
         isLastLevel = true;
     }
 
-    const oneBeforeLastForterLevelToEnglish = resultsJson.Meta.Dans["Dan 4"].name.toLowerCase().split(" ").join("-")
+    const oneBeforeLastForterLevelToEnglish = resultsJson.Meta.Dans["Dan 5"].name.toLowerCase().split(" ").join("-")
 
     return <div className="results">
         <h1><Link to="/">Home </Link> <gray>/</gray> {roleToEnglish}</h1>

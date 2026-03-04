@@ -2,7 +2,7 @@
   "Meta": {
     "Dans": {
       "Dan 1": {
-        "name": "Entry Level Engineer",
+        "name": "Entry-level Software Engineer",
         "impact": "self",
         "aka": "Junior Engineer"
       },
@@ -17,11 +17,16 @@
         "aka": "Tech Lead"
       },
       "Dan 4": {
+        "name": "Senior Software Engineer II",
+        "impact": "team",
+        "aka": ""
+      },
+      "Dan 5": {
         "name": "Staff Software Engineer",
         "impact": "teams",
         "aka": "Domain Owner"
       },
-      "Dan 5": {
+      "Dan 6": {
         "name": "Principal Software Engineer",
         "impact": "group/groups/company",
         "aka": "System Architect"
@@ -45,7 +50,8 @@
         "Observability",
         "Costs optimizations",
         "Ownership",
-        "Being a Chief"
+        "Being a Chief",
+        "Design Reviews"
       ],
       "Ladder": [
         {
@@ -60,24 +66,28 @@
             ],
             "Examples": [
               "Deploy a high-quality scoped feature to production (including tests, CR, etc.)",
-              "Investigate and fixe an interesting bug in one of the team's systems"
+              "Investigate and fix an interesting bug in one of the team's systems"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Being not self-motivated; needing someone to tell you what to do next",
-                "remedy": "Cultivate autonomy"
+                "anti-pattern": "Not self-motivated; needs someone to tell them what to do next",
+                "remedy": "Cultivate autonomy; look for tasks that need doing and volunteer for them"
               },
               {
-                "anti-pattern": "Constantly veering into the weeds",
-                "remedy": "Focus on the important things; follow the 80-20 rule"
+                "anti-pattern": "Constantly veers into the weeds",
+                "remedy": "Focus on the important things; follow the 80-20 rule to maximize your impact"
               },
               {
-                "anti-pattern": "Disregarding the team processes",
-                "remedy": "Learn the team's processes well before criticizing; they're ofter there for a reason"
+                "anti-pattern": "Disregards the team processes",
+                "remedy": "Learn the team's processes well before criticizing; they're often there for a reason"
+              },
+              {
+                "anti-pattern": "Forgetting Pull Requests during review (working on other tasks), without it getting to production",
+                "remedy": "Track your open PRs and treat reviews as a priority; shipped code is more valuable than half-done work"
               },
               {
                 "anti-pattern": "Working on too many things at once, not getting the important stuff done",
-                "remedy": "Focus on one thing at a time, and do it well, then move on"
+                "remedy": "Focus on one thing at a time, do it well, then move on to the next"
               }
             ],
             "Resources": [
@@ -102,41 +112,45 @@
         {
           "Dan 2": {
             "Responsibilities": [
-              "Consistently follow best coding practices",
-              "Defend your technical decisions in Code reviews",
-              "Write maintainable code (i.e. code that's easy to read, refactor, add features to, etc)",
-              "Provide helpful, timely code reviews",
-              "Contribute to technical design in projects, including thinking through edge cases",
-              "Participate in the team's on-call rotation, as applicable to the domain",
-              "Understand how code fits into a broader technical context",
-              "Break down large tasks into sub-tasks; give higher-level status updates on your progress",
-              "Have a high-level understanding of the company's major systems (\"system overview\")",
-              "Participate and contribute to design reviews in near-by scope"
+              "Consistently follows the best coding practices",
+              "Able to defend technical decisions in Code reviews",
+              "Writes maintainable code (i.e. code that's easy to read, refactor, add features to, etc)",
+              "Provides helpful, timely code reviews",
+              "Contributes to technical design, thinking through edge cases",
+              "Participates in the team's on-call rotation, as applicable to their domain",
+              "Understands how code fits into a broader technical context",
+              "Breaks large tasks down into sub-tasks; gives higher-level status updates",
+              "Has a high-level understanding of Forter's major systems (\"system overview\")",
+              "Able to participate and contribute to design reviews in near-by scope"
             ],
             "Examples": [
-              "Join on-call rotation for at least 2 services within the team's responsibility",
-              "Guide a new team member on working effectively in relevant areas",
-              "Have a good grasp on how the team's systems are being tested and deployed via CI/CD pipelines"
+              "Joins PagerDuty's teams (on-call rotation) for at least 2 services within the team's responsibility",
+              "Can guide a new team member on working effectively in relevant areas",
+              "Understands how the team's systems are being tested and deployed via CI/CD pipelines"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Failing to identify or communicate big roadblocks",
-                "remedy": "Raise red flags early;  get unstuck quickly"
+                "anti-pattern": "Fails to identify or communicate big roadblocks",
+                "remedy": "Raise red flags early; getting unstuck quickly benefits both you and the team"
               },
               {
-                "anti-pattern": "Not taking operational excellence seriously",
+                "anti-pattern": "Has an us-vs-them attitude",
+                "remedy": "Remember you're all working toward the same goals; collaboration across teams is essential"
+              },
+              {
+                "anti-pattern": "Doesn\u2019t take operational excellence seriously",
                 "remedy": "Consider that you're setting an example for more junior devs; be proud of your work"
               },
               {
-                "anti-pattern": "Providing solutions that are more complicated than necessary",
-                "remedy": "There's beauty in simplicity and elegance; tried and tested is often better than the new shiny toy"
+                "anti-pattern": "Provides solutions that are more complicated than necessary",
+                "remedy": "There's beauty in simplicity; tried and tested is often better than the new shiny toy"
               },
               {
-                "anti-pattern": "Preferring shallow progress over an in-depth understanding of code and context",
-                "remedy": "You should be expanding your context and understanding; it might not seem so at the moment, but they'll server you much better later down the line that a quick win now"
+                "anti-pattern": "Prefers shallow progress over an in-depth understanding of code and context",
+                "remedy": "Expanding your context and understanding will serve you much better later than a quick win now"
               },
               {
-                "anti-pattern": "Preferring patching symptoms rather than mitigating the core issue",
+                "anti-pattern": "Prefers patching symptoms than mitigating the core issue",
                 "remedy": "Spend 2x time now to actually fix the problem, to save 10x time later when the bug reappears"
               }
             ],
@@ -167,63 +181,62 @@
         {
           "Dan 3": {
             "Responsibilities": [
-              "Be an expert in the company's processes, while also helping to define and improve them",
-              "Write meaningful, helpful code reviews",
-              "Make well-reasoned design decisions, identifying potential issues, trade-offs, risks, and appropriate levels of abstraction",
-              "Be proficient in all relevant technical skills, and able to move quickly, due to a deep understanding of large portions of the codebase (cross teams)",
-              "Maintain awareness of industry trends and tools",
-              "Debug expertly within your primary focus area",
-              "Write tech specs and identify risks before starting major projects",
-              "Set technical standards for the team",
-              "Go out of your way to reduce complexity within the team's systems",
-              "Become a Chief of at least one of the team's primary systems",
-              "As a Chief of a system, define and drive the roadmap / vision for that system",
-              "Produce high-quality postmortems (aka BetterNexts) from production incidents (or interesting wins)",
-              "Take Security and Cost (cloud resources & time investment) into considerations when designing a technical solution"
+              "Consistently follows the best coding practices",
+              "Able to defend technical decisions in Code reviews",
+              "Writes maintainable code (i.e. code that's easy to read, refactor, add features to, etc)",
+              "Provides helpful, timely code reviews",
+              "Contributes to technical design, thinking through edge cases",
+              "Participates in the team's on-call rotation, as applicable to their domain",
+              "Understands how code fits into a broader technical context",
+              "Breaks large tasks down into sub-tasks; gives higher-level status updates",
+              "Able to participate and contribute to design reviews in near-by scope"
             ],
             "Examples": [
-              "During a code-review, be able to supplement comments with links to relevant resources or other examples, thus instructing the code committer",
-              "Offer a quarterly roadmap of the system of which you are a Chief",
-              "Be able to reason about \"buy vs. build\" when promoting technical initiatives (i.e. should we build a solution ourselves or buy an existing one)"
+              "Joins PagerDuty's teams (on-call rotation) for at least 2 services within the team's responsibility",
+              "Can guide a new team member on working effectively in relevant areas",
+              "Understands how the team's systems are being tested and deployed via CI/CD pipelines"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Not delegating. Always saying \u201cyes\u201d and suffer from burn-out or continuous loss of focus",
-                "remedy": "Be mindful of your time and previous engagements; don't spread yourself too thin"
+                "anti-pattern": "Fails to identify or communicate big roadblocks",
+                "remedy": "Raise red flags early; getting unstuck quickly benefits both you and the team"
               },
               {
-                "anti-pattern": "Letting details slip through the cracks",
-                "remedy": "At your level of engineering competence, you're expected to be meticulous in your craft"
+                "anti-pattern": "Has an us-vs-them attitude",
+                "remedy": "Remember you're all working toward the same goals; collaboration across teams is essential"
               },
               {
-                "anti-pattern": "Over-emphasizing scaling or high availability far beyond the requirements (project/business needs)",
-                "remedy": "While being mindful of scale and HA is important, sometimes a naive solution is good enough, and is able to get you up and running quickly"
+                "anti-pattern": "Doesn\u2019t take operational excellence seriously",
+                "remedy": "Consider that you're setting an example for more junior devs; be proud of your work"
               },
               {
-                "anti-pattern": "Preferring local solutions to more global problems, especially if a problem is an obvious issue to multiple teams",
-                "remedy": "Always think about the impact you're making; focusing only on your immediate surroundings limits the extent of your potential impact"
+                "anti-pattern": "Provides solutions that are more complicated than necessary",
+                "remedy": "There's beauty in simplicity; tried and tested is often better than the new shiny toy"
+              },
+              {
+                "anti-pattern": "Prefers shallow progress over an in-depth understanding of code and context",
+                "remedy": "Expanding your context and understanding will serve you much better later than a quick win now"
+              },
+              {
+                "anti-pattern": "Prefers patching symptoms than mitigating the core issue",
+                "remedy": "Spend 2x time now to actually fix the problem, to save 10x time later when the bug reappears"
               }
             ],
             "Resources": [
               {
                 "type": "article",
-                "name": "On Being A Senior Engineer",
-                "link": "https://www.kitchensoap.com/2012/10/25/on-being-a-senior-engineer/"
-              },
-              {
-                "type": "article",
-                "name": "Design Docs at Google",
-                "link": "https://www.industrialempathy.com/posts/design-docs-at-google/"
+                "name": "Excellence Through Code Reviewing",
+                "link": "https://davidbolton.net/blog/2014/06/06/code-reviewing/"
               },
               {
                 "type": "book",
-                "name": "Patterns of Enterprise Application Architecture",
-                "link": "https://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420"
+                "name": "Release It!",
+                "link": "https://www.amazon.com/Release-Design-Deploy-Production-Ready-Software-dp-1680502395/dp/1680502395/"
               },
               {
                 "type": "book",
-                "name": "Working Effectively with Legacy Code",
-                "link": "https://www.amazon.com/Working-Effectively-Legacy-Michael-Feathers/dp/0131177052/"
+                "name": "The Effective Engineer",
+                "link": "https://www.amazon.com/Effective-Engineer-Engineering-Disproportionate-Meaningful/dp/0996128107/"
               }
             ]
           }
@@ -231,43 +244,73 @@
         {
           "Dan 4": {
             "Responsibilities": [
-              "Focus on technical decision making, leading work that affects one or more complex systems and mission-critical areas",
-              "Consistently deliver code that sets the standard for quality and maintainability",
-              "Have a broad understanding of the company's architecture and how your team's domain fits within it",
-              "Systematically think through potential design impacts on other teams and the company",
-              "Be a go-to expert in an area, with an increasingly strategic mindset",
-              "Explore 3rd party vendors and new technologies with a sizable potential impact on the company",
-              "Proactively offer ways to optimize the team's systems for costs saving, scale and operational stability",
-              "Constantly keep in mind the company's security orientation (preferences, requirements, current tools, certifications) when designing and building systems",
-              "Control security permissions (saying no when needed) within the team, to reduce the attack surface"
+              "Proactively offers ways to optimize the team's systems for costs saving, scale and operational stability",
+              "Actively promotes the company's security orientation (preferences, requirements, current tools, certifications) when designing and building systems and can act as the team's Security Champion",
+              "Has a high-level understanding of Forter's major systems (\"system overview\")",
+              "Focused on technical decision making, leading work that affects one or more complex systems and mission-critical areas",
+              "Consistently delivers code that sets the standard for quality and maintainability",
+              "Go-to expert in an area, with an increasingly strategic mindset"
             ],
             "Examples": [
-              "Integrate a new monitoring solution, including the understanding of the business needs, gathering of requirements/pains, getting buy-in, performing a DR, educating the users, and leading the execution end to end. Post-production measure impact and satisfaction.",
-              "Lead a cross-team effort of documentation standardization",
-              "Lead a conversation and implementation around shared libraries across team",
-              "Lead a conversation and implementation around how we develop in a specific language (tooling, dev experience, best practices, etc.)",
-              "Migrate a huge project to use a newer technology stack that will help increase engineering velocity"
+              "Leads a cross-teams effort of documentation standardization",
+              "Leads a conversation and implementation around shared libraries across teams",
+              "Migrates a huge project of ours to use a newer technology stack that will help increase our engineering velocity"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Forcing your opinion (potentially abusing your \"title\") without giving enough attention to tradeoffs and hearing others",
-                "remedy": "Be mindful of the fact that you can also be wrong, and never browbeat others; lead by conviction, not fear"
+                "anti-pattern": "Forces their opinion (potentially abusing their \"title\") without giving enough attention to tradeoffs and hearing others",
+                "remedy": "Lead by conviction, not authority; be mindful that you can also be wrong, and never browbeat others"
               },
               {
-                "anti-pattern": "Focusing only on 1-2 teams or areas, instead of looking at the bigger picture (long-term horizon)",
-                "remedy": "You're expected to be impacting multiple teams and areas; see where you can use your skill-set for maximum impact"
+                "anti-pattern": "Falls in love with the solution instead of the problem. Cannot adopt others' opinions and execute on them",
+                "remedy": "There's usually nothing magical about your preferred solution; many equally good solutions may exist"
               },
               {
-                "anti-pattern": "Giving up too quickly when trying to convince people (e.g. multiple teams, many opinions) due to high friction",
-                "remedy": "People will inevitably disagree with you. That's ok. Consider their objections, but if you believe you're in the right, work harder on convincing them"
+                "anti-pattern": "Builds solutions that are too \u201cshort-term\u201d oriented or not robust enough. This is usually due to not enriching the requirements enough - or not providing the proper solutions",
+                "remedy": "Invest more time gathering and enriching requirements to produce more robust solutions"
+              }
+            ],
+            "Resources": [
+              {
+                "type": "article",
+                "name": "Undervalued Software Engineering Skills \u2014 Writing Well",
+                "link": "https://blog.pragmaticengineer.com/on-writing-well/"
+              }
+            ]
+          }
+        },
+        {
+          "Dan 5": {
+            "Responsibilities": [
+              "Has a broad understanding of our architecture and how their domain fits within it",
+              "Systematically thinks through potential design impacts on other teams and the company",
+              "Explores 3rd party vendors and new technologies with a sizable potential impact on the company",
+              "Act as the last line of defense - Persistently debugs the toughest issues throughout the entire stack, regardless of the environment. Finds the root cause or a viable workaround when others are unable to do so",
+              "Is the primary expert in multiple areas of our stack; deeply knowledgeable in several domains",
+              "Owns (as a Forter Chief) cross-team shared infrastructure",
+              "Leads medium to large (multi-Q engineering effort) and complicated cross-teams architecture changes"
+            ],
+            "Examples": [
+              "Integrates a new monitoring solution, including the understanding of the business needs, gathering of requirements/pains, getting buy-in, performing a DR, educating the users, and leading the execution end to end. Post-production measures impact and satisfaction",
+              "Leads a conversation and implementation around how we develop in a specific language (tooling, dev experience, best practices, etc.)",
+              "Leads a successful adoption of a system (high impact on day to day development and ops) that will drastically change the way everyone in the group (or groups) works"
+            ],
+            "Anti-Patterns": [
+              {
+                "anti-pattern": "Focuses only on 1-2 teams or areas, instead of looking at the bigger picture (long-term horizon)",
+                "remedy": "You're expected to impact multiple teams; see where you can use your skill-set for maximum impact"
               },
               {
-                "anti-pattern": "Falling in love with the solution instead of the problem. Be unable adopt others' opinions and execute on them.",
-                "remedy": "There's usually nothing magical about your preferred solution; consider that there may be many equally good solutions to a problem. If others prefer and equally viable solution, it might be better to adopt it than digging in and defending yours"
+                "anti-pattern": "Gives up too quickly when trying to convince people (e.g. multiple teams, many opinions) due to high friction",
+                "remedy": "People will inevitably disagree. Consider their objections, but if you believe you're right, work harder on convincing them"
               },
               {
-                "anti-pattern": "Building solutions that are too \u201cshort-term\u201d oriented or not robust enough",
-                "remedy": "Spend more time when gather requirements to enrich them, and make the final solution more robust"
+                "anti-pattern": "Acts only from a technical viewpoint, without considering the business needs or needed impact, e.g. comes up with suggestions that might not be relevant for the company in the next 12-18 months",
+                "remedy": "Architectural decisions have vast implications; always think about long-term impact aligned with business needs"
+              },
+              {
+                "anti-pattern": "Doesn\u2019t invest time to come up with concrete vision and ideas for improving the way we work",
+                "remedy": "Reflect on this pattern and actively seek feedback from peers on how to improve"
               }
             ],
             "Resources": [
@@ -285,39 +328,32 @@
           }
         },
         {
-          "Dan 5": {
+          "Dan 6": {
             "Responsibilities": [
-              "Persistently debug the toughest issues throughout the entire stack, regardless of the environment; find the root cause or a viable workaround when others are unable to do so",
-              "Be incredibly knowledgeable both inside and outside of the company in your area(s) of expertise",
-              "Be the primary expert in multiple areas of our stack; deeply knowledgeable in several domains",
-              "Own (as a Chief) cross-team shared infrastructure",
-              "Lead large (multi-year engineering effort) and complicated cross-teams/groups architecture changes",
-              "Help the Security team by participating in the company's Risk Analysis. Provide useful insights on topics such as PII, change management, vulnerabilities, SSH/VPN access, Disaster Recovery, etc."
+              "Consistently reduces Forter's architectural complexity, in order to improve developer velocity",
+              "Actively involved in shaping the group's arhictecture and engineering strategy for 2-3 years",
+              "Incredibly knowledgeable both inside and outside of the company in their area(s) of expertise",
+              "Owns (as a Forter Chief) cross-group shared infrastructure",
+              "Leads large (multi-year engineering effort) and complicated cross-groups architecture changes",
+              "Helps the Security team by participating in the company's Risk Analysis. Provides useful insights on topics such as PII, change management, vulnerabilities, SSH/VPN access, Disaster Recovery, etc",
+              "Able to ensure a high level of quality in the group's designs, keeping Staffs and Directors honest and accountable, including to Engineering Excellence"
             ],
             "Examples": [
-              "Leads a multi-year engineering effort",
-              "Leads a successful adoption of a system (high impact on day to day development and ops) that will drastically change the way everyone in the group (or groups) works"
+              "Leads a multi-year engineering effort such as Multi-region/cloud transition and support",
+              "Effecivtely utilizes quick proof-of-value and experimentation to create buy in among stakeholders",
+              "Generates a discussion about buy-vs-build in an important domain. Adds a concrete recommendation, and pushes Engineering leadership to commit to a decision"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Acting only from a technical viewpoint, without considering the business needs or needed impact (e.g. coming up with suggestions that might not be relevant for the company in the next 12-18 months)",
-                "remedy": "At your level, architectural decisions have vast implications; you should always be thinking on long term impact that's aligned with the company's business needs"
+                "anti-pattern": "Focuses only on R&D, without trying to understand the impact on other groups (where applicable)",
+                "remedy": "Expand your horizons across department lines; your decisions likely affect other departments as well"
               },
               {
-                "anti-pattern": "Not investing time to come up with concrete vision and ideas for improving the way we work",
-                "remedy": "You're expected to be able to present a coherent articulation of your ideas, not just vague statements about \"making things better\""
-              },
-              {
-                "anti-pattern": "Focusing only on R&D, without trying to understand the impact on other groups (where applicable)",
-                "remedy": "Try to expand your horizons across department lines; your decisions likely affect other departments as well \u2014\u00a0be mindful of it"
+                "anti-pattern": "Neglects their other responsibilities in favor of doing mostly hands-on work",
+                "remedy": "Balance hands-on work with strategic leadership; your broader responsibilities multiply your impact"
               }
             ],
             "Resources": [
-              {
-                "type": "article",
-                "name": "Undervalued Software Engineering Skills \u2014 Writing Well",
-                "link": "https://blog.pragmaticengineer.com/on-writing-well/"
-              },
               {
                 "type": "article",
                 "name": "Some Thoughts on the Principal Role",
@@ -333,40 +369,44 @@
         }
       ]
     },
-    "project-leadership": {
+    "delivery": {
       "Topics": [
-        "Design reviews",
-        "Project management",
+        {
+          "Project management": "estimations, planning, etc."
+        },
         "Getting things done",
         "Communication",
-        "Alignment",
-        "Delivery"
+        "Alignment"
       ],
       "Ladder": [
         {
           "Dan 1": {
             "Responsibilities": [
-              "Deliver well-defined small tasks, holding yourself accountable",
-              "Make steady progress on tasks; know when to ask for help in order to get unblocked",
-              "Learn relevant tools and resources, while developing your productivity skills",
-              "Build effort-estimation skills",
-              "Seek input from colleagues with area expertise"
+              "Able to deliver well-defined small tasks, holding themselves accountable",
+              "Makes steady progress on tasks; knows when to ask for help in order to get themselves unblocked",
+              "Learns relevant tools and resources, while developing their productivity skills",
+              "Builds effort-estimation skills",
+              "Seeks input from colleagues with area expertise"
             ],
             "Examples": [
-              "Able to scope a feature in Asana/Jira, including tests, monitoring, alerts, code-review and everything else needed to deliver a high quality feature"
+              "Able to scope a feature in Asana, including tests, monitoring, alerts, code-review and everything else needed to deliver a high quality feature"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Moving to writing code too quickly, without first fully scoping the effort/project",
-                "remedy": "Make sure you know what you're going to do before starting coding; this will help you avoid having to backtrack later"
+                "anti-pattern": "Moves to writing code too quickly, without first fully scoping the effort/project",
+                "remedy": "Make sure you know what you're going to do before starting coding; this avoids costly backtracking later"
               },
               {
-                "anti-pattern": "Avoiding raising a flag when stuck on the same problem for too long",
-                "remedy": "Don't be afraid to ask for help; while some determination is commendable, don't waste too much time on a problem that someone else has already solves"
+                "anti-pattern": "Avoids raising a flag when stuck in the same problem for too long",
+                "remedy": "Don't be afraid to ask for help; while determination is commendable, don't waste time on a problem someone can help with"
               },
               {
-                "anti-pattern": "Failing to report on progress in a timely manner (\"going dark\")",
-                "remedy": "Almost always prefer \"push\" to \"pull\" communications; letting others know where you stand on a task is a sure sign of ability and confidence"
+                "anti-pattern": "Fails to communicate needs to colleagues or manger(s)",
+                "remedy": "Proactive communication builds trust and helps your team support you better"
+              },
+              {
+                "anti-pattern": "Fails to report on progress in a timely manner (\"going dark\")",
+                "remedy": "Almost always prefer 'push' to 'pull' communications; letting others know where you stand shows ability and confidence"
               }
             ],
             "Resources": [
@@ -386,32 +426,31 @@
         {
           "Dan 2": {
             "Responsibilities": [
-              "Work autonomously to estimate and deliver medium to large tasks",
-              "Master the ability to break down tasks, plan, estimate, and cut scope in order to ship on time",
-              "Detect problems in requirements and notify the relevant stakeholders",
-              "Attempt to identify major pitfalls in the project ahead of time",
-              "Understand how people use the product/service you're building, and be able to adjust accordingly",
-              "Proactively inform on issues, risks and delays in tasks",
-              "Deliver design reviews for small projects",
-              "Include in your project planning/estimation work such as documentation, tests, monitoring, alerts, costs, security considerations, and anything else that is required for maintenance"
+              "Able to work autonomously to estimate and deliver medium to large tasks",
+              "Masters the ability to break down tasks, plan, estimate, and cut scope in order to ship on time",
+              "Detects problems in requirements and notifies the relevant stakeholders. Attempts to identify major pitfalls in the project ahead of time",
+              "Understands how people use the product/service they're building, and is able to adjust accordingly",
+              "Proactively informs on issues, risks and delays in tasks",
+              "Able to deliver design reviews for small projects",
+              "Includes in the project planning/estimation work such as documentation, tests, monitoring, alerts, costs, security considerations, and anything else that is required for maintenance"
             ],
             "Examples": [
-              "Conduct a high quality Design Review (DR) for a 2-3w project",
-              "Lead the execution of a medium-size project (2-4w) with 1-2 more people in the team",
-              "Continue to support (as an owner) a project beyond shipping to production (a few weeks after the project is deployed and running)"
+              "Conducts a high quality Design Review (DR) for a 2-3w project",
+              "Leads the execution of a medium-size project (2-4w) with 1-2 more people in the team",
+              "Continues to support (as an owner) a project beyond shipping to production (a few weeks after the project is deployed and running)"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Placing blame on project delays elsewhere",
-                "remedy": "As the owner of a project, the buck stops with you; be confident that others will recognize when a delay is not your fault, but still take responsibility for it"
+                "anti-pattern": "Places blame on project delays elsewhere",
+                "remedy": "As the owner of a project, the buck stops with you; take responsibility even when delays aren't your fault"
               },
               {
-                "anti-pattern": "Getting stuck on unimportant details; not utilize the 80-20 rule",
-                "remedy": "Some parts of the project bring most of its value; focus on those first and foremost, before moving on to polishing touches"
+                "anti-pattern": "Gets stuck on unimportant details; doesn't utilize the 80-20 rule",
+                "remedy": "Some parts of the project bring most of its value; focus on those first before moving on to polishing touches"
               },
               {
-                "anti-pattern": "Not communicating progress related to the project",
-                "remedy": "Regardless of whether the lack of progress is due to you or others, a steady stream of communications is imperative to let your superiors know where the project stands"
+                "anti-pattern": "Doesn't communicate progress related to the project, whether the lack of progress is due to them or their teammates",
+                "remedy": "A steady stream of communications is imperative to let your superiors know where the project stands"
               }
             ],
             "Resources": [
@@ -422,7 +461,7 @@
               },
               {
                 "type": "article",
-                "name": "We are All Product Owners! An Impact Guide for Engineers*",
+                "name": "We are All Product Owners! An Impact Guide for Engineers",
                 "link": "https://medium.com/@erand/we-are-all-product-owners-an-impact-guide-for-engineers-76a2b4342c74"
               }
             ]
@@ -431,43 +470,40 @@
         {
           "Dan 3": {
             "Responsibilities": [
-              "Be able to take ownership to lead and deliver large projects (>4w of work) that spans multiple systems, with support from peers",
-              "When acting as the Project Lead on a project, communicate progress to stakeholders and ensure alignment",
-              "Be persistent in the face of roadblocks; dispatch them efficiently, pulling in others as necessary",
-              "Scope and stage work into well-defined milestones to avoid a monolithic deliverable",
-              "Be accountable end-to-end, through planning, development, deploy, monitoring and maintenance",
-              "Set realistic deadlines, estimating methodically based on iterative learning",
-              "Be able to question and push back on tasks/requirements",
-              "Be able to reduce complexity and prioritize in alignment with company goals",
-              "Handle well open-ended problems and ambiguity",
-              "Suggest steps to mitigate impact of delays in projects",
-              "Require minimal direction / oversight",
-              "Ensure projects don't lose momentum",
-              "Deliver design reviews for complex projects",
-              "Seek empirical validation through PoCs, tests and research"
+              "Consistently delivers on-time and at a high level of quality",
+              "Able to take ownership to lead and deliver large projects (<8w of work) that spans 1-2 systems, with support from peers",
+              "When acting as the Project Lead on a project, communicates progress to stakeholders and ensures alignment",
+              "Persistent in the face of roadblocks; dispatches them efficiently, pulling in others as necessary",
+              "Scopes and stages work into well-defined milestones to avoid a monolithic deliverable",
+              "Accountable end-to-end, through planning, development, deploy, monitoring and maintenance",
+              "Sets realistic deadlines, estimating methodically based on iterative learning",
+              "Able to question and push back on tasks/requirements",
+              "Able to reduce complexity and prioritize in alignment with company goals",
+              "Suggests steps to mitigate impact of delays in projects",
+              "Requires minimal direction / oversight",
+              "Ensures projects don't lose momentum",
+              "Seeks empirical validation through PoCs, tests and research"
             ],
             "Examples": [
-              "Being able to separate requirements/pains from the solution, and, if needed, agree on the former before the latter. Avoid coming up with a solution that many people will think solves the wrong requirement (or are confused due to not knowing what the requirements are)",
-              "Lead a Design Review of a fairly large project (more than 6 weeks of engineering time)",
-              "Mitigate risks of a complex DR which requires a new technology or uses a new capability, by doing proper research as part of the DR process (e.g. running a small-scale PoC to validate a risk/concern that might affect the DR)",
-              "Get buy-in from other lead developers before presenting a DR to a wider audience"
+              "Able to separate requirements/pains from the solution, and, if needed, agree on the former before the latter. Avoids coming up with a solution that many people will think solves the wrong requirement (or are confused due to not knowing what the requirements are)",
+              "Gets buy-in from other lead developers before presenting a DR to a wider audience"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Rushing to work on the solution before gathering and understanding business/analytical/technical needs",
-                "remedy": "Time spent planning is payed back tenfold during execution"
+                "anti-pattern": "Rushes to work on the solution before gathering and understanding business/analytical/technical needs",
+                "remedy": "Time spent planning is paid back tenfold during execution"
               },
               {
-                "anti-pattern": "Not stating clearly risks in a project and the way they will be mitigated",
-                "remedy": "Risk mitigation is arguably the most important part of a Design Review; be sure to address risks early and with detail"
+                "anti-pattern": "Doesn't clearly state the risks in the project and how they will be mitigated",
+                "remedy": "Risk mitigation is arguably the most important part of a Design Review; address risks early and with detail"
               },
               {
-                "anti-pattern": "Being unable to lead other teammates in the project. Having problems with e.g. delegation, tasks assignment, solving roadblocks, communications around progress, etc.",
-                "remedy": "Understand that there's only so much you can do on your own. The mark of a good leader is being able to work with others"
+                "anti-pattern": "Unable to lead other teammates in the project. Has problems with e.g. delegation, tasks assignment, solving roadblocks, communications around progress, etc",
+                "remedy": "Understand that there's only so much you can do on your own; the mark of a good leader is working effectively with others"
               },
               {
-                "anti-pattern": "Not pushing back (and providing alternatives and justifications) on requirements that might add risk, add a lot of time to the project or make it extremely hard to maintain it in the long run",
-                "remedy": "Taking ownership of a project means accepting responsibility for it; not pushing back on risky requirements is a sure way to end up with a project you hate supporting"
+                "anti-pattern": "Doesn't push back (and provides alternatives and justifications) on requirements that might add risk, add a lot of time to the project or make it extremely hard to maintain it in the long run",
+                "remedy": "Taking ownership means accepting responsibility; not pushing back on risky requirements leads to projects you'll hate supporting"
               }
             ],
             "Resources": [
@@ -487,38 +523,77 @@
         {
           "Dan 4": {
             "Responsibilities": [
-              "Plan and execute large projects with complex requirements and interdependencies across teams and systems",
-              "Consistently deliver on-time and at a high level of quality",
-              "Define key metrics and measure the project's impact",
-              "Consistently reduce the complexity of projects in order to get more benefit with less work",
-              "Contribute to all major architectural decisions and read all tech specs within your domain. Track status and consider implications for other systems",
-              "Enable more junior engineers to take a leading role in designing solutions, by helping them understand requirements and organizational context",
-              "Effectively prioritize your own workload and focus across many streams of work",
-              "Market and advertise projects; create excitement for users and drive adoption",
-              "Help define roadmaps and set visions for long-term projects",
-              "Work closely with relevant Product Managers to gain context and understand business needs. Be able to then represent the business/product in future meetings with your teammates"
+              "Defines key metrics and measures the project's impact",
+              "Consistently able to reduce the complexity of projects in order to get more benefit with less work",
+              "Contributes to all major architectural decisions and reads all tech specs within their domain. Tracks status and considers implications for other systems",
+              "Enables more junior engineers to take a leading role in designing solutions, by helping them understand requirements and organizational context",
+              "Able to take ownership to lead and deliver large projects (>4w of work) that spans multiple systems, with support from peers",
+              "Handles well open-ended problems and ambiguity",
+              "Delivers design reviews for complex projects",
+              "Markets and advertises projects. Creates excitement for users and driving adoption",
+              "Works closely with relevant Product Managers to gain context and understand business needs. Able to then represent the business/product in future meetings with their teammates"
             ],
             "Examples": [
-              "Explain a project's business impact (\"why do we do this?\") and tradeoffs to a wide audience. Build decision making context for others",
-              "Know how to utilize meetings effectively (e.g. status meetings, daily, weekly sync) to drive project momentum and keep everyone aligned",
-              "Act as a single-point-of-contact in the organization for a project. Don't require multiple managers to be involved in understanding the project's progress/status"
+              "Leads a Design Review of a fairly large project (more than 6 weeks of engineering time)",
+              "Mitigates risks of a complex DR which requires a new technology or uses a new capability, by doing proper research as part of the DR process: e.g. running a small-scale PoC to validate a risk/concern that might affect the DR"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Struggling to raise flags and find alternative solutions when a teammate or a dependency is not keeping up, either in terms of quality or availability",
-                "remedy": "Learn to think on your feet. Circumstances change, and you should be able to adapt, whether by redirecting manpower, changing requirements, delaying the project, or any other means"
+                "anti-pattern": "Struggles to raise flags and find alternative solutions when a teammate or a dependency is not keeping up, either in terms of quality or availability",
+                "remedy": "Learn to think on your feet; circumstances change and you should adapt by redirecting manpower, changing requirements, or other means"
               },
               {
-                "anti-pattern": "Avoiding confrontations \u2014 struggling to resolve disagreements, explicitly stating your needs, etc.",
-                "remedy": "Confrontations are inevitable, so it'll be nigh impossible to completely avoid them. Be sure you know *exactly* what the disagreement is about; it might be much smaller than it seems"
+                "anti-pattern": "Avoids confrontations: struggles to resolve disagreements, explicitly stating their needs, etc",
+                "remedy": "Confrontations are inevitable; be sure you know exactly what the disagreement is about \u2014 it might be smaller than it seems"
+              }
+            ],
+            "Resources": [
+              {
+                "type": "article",
+                "name": "Don\u2019t Yolo Hard Conversations",
+                "link": ""
+              }
+            ]
+          }
+        },
+        {
+          "Dan 5": {
+            "Responsibilities": [
+              "Able to plan and execute large projects with complex requirements and interdependencies across teams and systems",
+              "Able to effectively prioritise their own workload and focus across many streams of work",
+              "Helps define roadmaps and set visions for long-term projects",
+              "Able to succinctly explain to RnD management the project's goals, KPIs and milestones at the right level of abstraction",
+              "Able to successfully plan and deliver complex, multi team/system, long-term projects, including ones with external dependencies",
+              "Is a role-model for balancing product and engineering concerns/risks and mitigations",
+              "Initiates new projects: creates buy-in, drives delivery and adoption",
+              "Demonstrates great skills in project/time/energy management on multi-months projects, while keeping high momentum",
+              "Showcases resilience in the face of challenges, pushing to have their voice heard and an ability to persuade peers and managers, especially when getting buy-in",
+              "Thinks outside the box, generating brand new ideas, initiatives and approaches. Shows initiative by introducing tools, vendors, projects and ways of working that didn't exist in the org/group before"
+            ],
+            "Examples": [
+              "Able to explain a large project's business impact (\"why do we do this?\") and tradeoffs to a wide audience. Builds decision making context for others",
+              "Knows how to utilize complex (multiple stakeholders) meetings effectively to drive project momentum and keep everyone aligned",
+              "Acts as a single-point-of-contact in the organization for a project. Doesn't require multiple managers to be involved in understanding the project's progress/status",
+              "Deals well with high friction as a result of cross-cutting concern, by motivating and energizing themselves and others",
+              "Able to distill large amounts of concerns/feedback into well defined actionable items, while solving the actual business needs of the project",
+              "Respectfully and clearly explains why certain concerns or suggestions will not be done as a part of the project (due tradeoffs of time/value/risk)"
+            ],
+            "Anti-Patterns": [
+              {
+                "anti-pattern": "Tries to achieve too many things on their own, instead of relying on others around them: either by asking help or delegating tasks",
+                "remedy": "Hopefully you're surrounded by other competent people \u2014 take advantage of that and work with them"
               },
               {
-                "anti-pattern": "Trying to achieve too many things on your own, instead of relying on others around your \u2014 either by asking help or delegating tasks",
-                "remedy": "Hopefully, you're surrounded by other competent people \u2014\u00a0take advantage of that fact, and work with them :)"
+                "anti-pattern": "Inadvertently suppresses innovation by other engineers, for example by giving their own ideas first and loudest, criticising without truly listening to new ideas or by giving the impression that there is only one right solution to a problem",
+                "remedy": "Be open to others, especially junior engineers; remember that you yourself were once a smart junior"
               },
               {
-                "anti-pattern": "Inadvertently suppressing innovation from other engineers (e.g. by giving your own ideas first and loudest, criticizing without truly listening to new ideas or by giving the impression that there is only one right solution to a problem)",
-                "remedy": "Be open to others, especially the more junior engineers; remember that you yourself was once a smart junior :)"
+                "anti-pattern": "Lets friction (disagreements, unclear requirements) stall the project and kill momentum for the team that works on it. Doesn't lead others well, leaving them feeling lost and unsure of what needs to be done",
+                "remedy": "Sometimes hard decisions need to be made, even if imperfect. Be clear on risks, mitigations and tradeoffs, and push forward"
+              },
+              {
+                "anti-pattern": "Avoids presenting dilemmas, tradeoffs and taking an active part in making a decision in a timely manner. Waits for others to make the decision",
+                "remedy": "As a senior engineer, you'll often be the most senior person on a project. No one else will decide the way forward for you"
               }
             ],
             "Resources": [
@@ -541,30 +616,23 @@
           }
         },
         {
-          "Dan 5": {
+          "Dan 6": {
             "Responsibilities": [
-              "Be able to succinctly explain to management a project's goals, KPIs and milestones, at the right level of abstraction",
-              "Successfully plan and deliver complex, multi team/system, long-term projects, including ones with external dependencies",
-              "Be the go-to person on company-wide critical projects or initiatives",
-              "Create a compelling technical vision with a company-level impact, anticipating future needs",
-              "Be a role-model for balancing product and engineering concerns/risks and mitigations",
-              "Initiate new projects \u2014 create buy-in, drive delivery and adoption",
-              "Demonstrate great skills in project/time/energy management on multi-months projects, while keeping high momentum",
-              "Organize and lead large groups of people from multiple teams/groups when working on a project"
+              "Able to succinctly explain to Forter's management the project's goals, KPIs and milestones at the right level of abstraction",
+              "Is the go-to person on company-wide critical projects or initiatives",
+              "Creates a compelling technical vision with a company-level impact, anticipating future needs",
+              "Able to organize and lead a large group of people from multiple teams/groups when working on a project",
+              "Can push forward projects with extremely open-ended criteria, dealing with considerable fear/intution-based pushback. Able to turn research and data into evidence, convincing the stakeholders of the way forward"
             ],
             "Examples": [
-              "Deal well with high friction as a result of cross-cutting concerns, by motivating and energizing yourself and others",
-              "Distill large amounts of concerns/feedback into well defined actionable items, while solving the actual business needs of the project",
-              "Respectfully and clearly explain why certain concerns or suggestions will not be done as a part of the project (due tradeoffs of time/value/risk)"
+              "Coming up with a new, cost-effective decisioning system that changes Analytics, Engineering and Product ways of working (L3C)",
+              "A few other notable examples: Data Retention, Cloud Cost Optimization, Disaster Recovery, etc",
+              "Lead a short-medium term task-force to deal with an immediate and painful organization need (for example, Payments availability issues)"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Letting friction (disagreements, unclear requirements) stall the project and kill momentum for the team that works on it. Not leading others well, leaving them feeling lost and unsure of what needs to be done",
-                "remedy": "There are times when hard decisions need to be made, even if they're not perfect. So long as you're clear on risks, mitigations and tradeoffs, it's to push an imperfect solution"
-              },
-              {
-                "anti-pattern": "Avoiding presenting dilemmas, tradeoffs and taking an active part in making a decision in a timely manner. Waiting for others to make the decision",
-                "remedy": "As a principal engineer, you'll often be the most senior person working on a project. No one else will decide on the way forward for you on those occasions"
+                "anti-pattern": "Consistenly (without proper expectation setting) being too hyper-focused on delivering a specific effort, neglecting delivery issues in other areas in the group",
+                "remedy": "Balance your focus across your areas of responsibility; set proper expectations when you need to deep-dive on a specific effort"
               }
             ],
             "Resources": [
@@ -583,7 +651,7 @@
         }
       ]
     },
-    "business-involvement": {
+    "business-impact": {
       "Topics": [
         "Product",
         "Market understanding",
@@ -597,22 +665,22 @@
         {
           "Dan 1": {
             "Responsibilities": [
-              "Seek to understand what the company's product actually solves and how your customers interact with it",
-              "Understand the high-level roles of the different departments in the R&D",
-              "Understand and be able explain to others the business impact of your current task (e.g. during daily/weekly)"
+              "Seeks to understand what our product actually solves and how our customers (merchants) interact with it",
+              "Understands the high-level roles of the different departments at Forter: Ops Analytics, CS, Research, DS, Core Analytics, Engineering",
+              "Understands and can explain to others (e.g. in our Weekly session) the business impact of their current task"
             ],
             "Examples": [
-              "Complete your onboarding, including around non-engineering departments, and be able to explain the concepts to others (e.g. your manager)",
-              "Ask questions about how different departments in the company contribute to the product"
+              "Completes Forter Academy sessions around non-engineering departments at Forter, and can explain the concepts to others (e.g. their manager)",
+              "Asks questions about how different departments at Forter contribute to the product \u2014 either precision or offering"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Having a \"code-monkey\" mindset \u2014 knowing how to deliver features but not being able to explain or not caring why they're worth doing",
-                "remedy": "You'll find your work much more satisfying and meaningful if you're able to articulate the business needs of the features you're working on"
+                "anti-pattern": "Has a \"code-monkey mindset\" \u2014 knows how to deliver features but cannot explain or doesn't care why they're worth doing",
+                "remedy": "You'll find your work much more satisfying if you can articulate the business needs of the features you're working on"
               },
               {
-                "anti-pattern": "Looking \"down\" on other departments (outside of Engineering) \u2014 not understanding their work, thus discounting their needs/pains/contributions",
-                "remedy": "Having strong engineers does not mean having a successful company; trust that the same people that collected great engineers also put thought into hiring amazing people in other departments"
+                "anti-pattern": "Looks \"down\" on other departments \u2014 doesn't understand their work, thus discounting their needs/pains/contributions",
+                "remedy": "Having strong engineers doesn't mean having a successful company; trust that other departments have amazing people too"
               }
             ],
             "Resources": [
@@ -627,24 +695,25 @@
         {
           "Dan 2": {
             "Responsibilities": [
-              "Understand the role of the team in the larger business context",
-              "Initiate ideas affecting the team, explaining their urgency or priority with business justifications",
-              "Begin understanding the pains of other teams around you (immediate internal customers)",
-              "Have a basic understanding of where the company fits in its domain in the world \u2014 what's its complete offering, its differentiators vs. competitors, etc.",
-              "Deepen your understanding of the high level roles of the teams in your department"
+              "Understands the role of the team in the larger business context",
+              "Initiates ideas affecting the team, explaining their urgency or priority with business justifications",
+              "Begins to understand the pains of other teams around them (immediate internal customers)",
+              "Has a basic understanding of where Forter fits in the eCommerce world: what is our complete offering (not only TX decisions), our differentiators vs. competitors, etc",
+              "Deepens their understanding of the high level roles of the teams in their department"
             ],
             "Examples": [
-              "Can clearly explain to others (e.g. new employees) roles of teams in other departments",
-              "Know, at least on a high level, how your team's systems impact the business (e.g. enabling others, directly affecting offering)"
+              "Completes and understands well Forter Academy sessions on Market Competitive Analysis and Product Offering",
+              "Can clearly explain to others (e.g. new employees) not only Core Analytics's role but also what's Velocity team's responsibility is versus Person Attribute",
+              "Knows, at least on a high level, how their team's systems impact the business (e.g. enabling others, directly affecting precision/offering)"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Promoting ideas with purely technical merit, discounting business justifications",
-                "remedy": "Your superiors aren't likely to greenlight such projects, which will leave you frustrated. Start from business needs, not tech; you can always choose cool tech once you know what the needs are (if applicable)"
+                "anti-pattern": "Promotes ideas with purely technical merit, discounting business justifications. Makes it hard to support their ideas",
+                "remedy": "Start from business needs, not tech; superiors are unlikely to greenlight projects without business justification"
               },
               {
-                "anti-pattern": "Not considering or verifying costs when suggesting new ideas",
-                "remedy": "Cost is one of the first factors experienced devs and managers consider, so before advancing a new idea, make sure you have a rough idea of how much it'll cost"
+                "anti-pattern": "Doesn't consider or verifies costs when suggesting new ideas",
+                "remedy": "Cost is one of the first factors experienced devs and managers consider; have a rough idea of cost before advancing a new idea"
               }
             ],
             "Resources": [
@@ -659,26 +728,22 @@
         {
           "Dan 3": {
             "Responsibilities": [
-              "Understand well the pains of other teams around you (first circle / immediate internal customers)",
-              "Proactively seek to talk with internal customers to understand their pains and how the team can serve them better",
-              "Be able to clearly document and share your insights and suggestions from talking with other teams, so the team can learn from it and initiate ideas around it - some will be solved within the team, some will be given as feedback to other teams",
-              "Take an interest in your company's business performance \u2014 understand the ARR, how margins affect the business, knows the big logos the company sold to, etc.",
-              "Understand the roles of all the departments in the company, with focus on the sales pipeline",
-              "Take costs, security and other business impacting aspects into consideration (e.g. when suggesting new initiatives, as part of DRs, etc.)"
+              "Understands well the pains of immediate internal customers around them",
+              "Can clearly document and share their insights and suggestions from talking with other teams, so the team can learn from it and initiate ideas around it - some will be solved within the team, some will be given as feedback to other teams",
+              "Takes an interest in Forter's business performance: understand our ARR, how margins affect the business (covered vs. uncovered), knows the big logos we sold to, etc",
+              "Takes costs, security and other business impacting aspects into consideration, e.g. when suggesting new initiatives, as part of DRs, etc"
             ],
             "Examples": [
-              "Have a good understanding of your team's part of the sales cycle",
-              "Be able to explain (at a high level) the full cycle of selling your company's product to a customer \u2014 marketing (generating a lead), pre-sale, sale, onboarding (CS/Ops) and serving the customer for the long run",
-              "Share a document with the team, and other relevant teams, around information you got from your internal customers. Including a well-crafted summary of the biggest pains (with priorities), relevant suggestions (with high level cost/estimation and gain from that), and basic priorities as you see fit (with business justification)"
+              "Shares a document with the team, and other relevant teams, around information they got from their internal customers. With well-crafted summary of the biggest pains (with priorities), relevant suggestions (with high level cost/estimation and gain from that), and basic priorities as they see fit (with business justification)"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Not spending enough time to document proper pains & suggestions, keeping it all in your head and relying only on your memory",
-                "remedy": "Others won't be able to act to whatever you keep in your head; documenting and sharing your insights is a crucial part of having them"
+                "anti-pattern": "Doesn't spend enough time to document proper pains & suggestions, keeping it all in their heads and relying only on their memory",
+                "remedy": "Others won't be able to act on whatever you keep in your head; documenting and sharing insights is crucial"
               },
               {
-                "anti-pattern": "Spending too much of your time focusing on the team and the team's needs, instead of trying to increase your impact circle with other teams around you",
-                "remedy": "One of the greatest benefits that come from increasing your understanding of the business, is the ability to increase the radius of your impact"
+                "anti-pattern": "Spends too much of their time focusing on the team and the team's needs, instead of trying to increase their impact circle with other teams around them",
+                "remedy": "One of the greatest benefits of increased business understanding is the ability to extend the radius of your impact"
               }
             ],
             "Resources": [
@@ -698,29 +763,46 @@
         {
           "Dan 4": {
             "Responsibilities": [
-              "Understand the yearly goals and main projects of many of the group's teams, including their business impact",
-              "Be aware of yearly organizational growth (e.g. new headcount) within the group, aimed at supporting business needs",
-              "Be able to clearly articulate and explain to others (e.g. new or less experienced ICs) the motivation and business needs of your main systems",
-              "Be able to lead one of the main pillars in the group and become a point-of-contact for it when talking with others (e.g. product offering, scale, costs, security, precision, etc.)",
-              "Be continually involved in the team's backlog grooming \u2014 help the direct manager to balance tech debt, areas worth to invest in, areas where we should de-risk/mitigate potential threats, etc."
+              "Continually involved in the team's backlog grooming \u2014 helps the direct manager to balance tech debt, areas worth to invest in, areas where we should de-risk/mitigate potential threats, etc",
+              "Proactively seeks to talk with internal customers to understand their pains and how the team can serve them better",
+              "Understands the roles of all the departments at Forter, with focus on the sales pipeline, with good understanding their responsibilities, where they influence as part of the sales cycle, etc"
             ],
             "Examples": [
-              "Lead the group's FinOps effort \u2014 tracking expenses, creating visibility, suggesting new ideas to cut costs, getting the buy-in, executing, reporting progress to the entire group, etc.",
-              "Relevant VPs/directors in the org feel the need to invite you to relevant meetings, instead of inviting your direct manager. The IC (you) becomes the point-of-contact, and managers aren't needed in every conversation",
-              "Take an active part in quarterly planning \u2014 suggest areas that are worth investing in, helping with high level estimations, consulting on priorities (with good reasoning behind them)"
+              "Can draw on a whiteboard the systems involved in Forter's precision mechanisms (e.g. VT, AxTx, Attributes, Velocity, Models, Decision Manager, etc.)",
+              "Can explain (high level) the full cycle of selling Forter to a customer: marketing (generating a lead), pre-sale, sale, onboarding (CS/Ops) and serving the customer for the long run",
+              "Takes an active part in quarterly planning \u2014 suggests areas that are worth investing in, helps with high level estimations, consults on priorities (with good reasoning behind them)"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Letting things live in a \"limbo\" for complicated domains (where ownership is a bit fluid). Being passive or unclear about time estimations, or making excuses on why we've reached this state",
-                "remedy": "As they say, \"with great power comes great responsibility\". Consider stepping up and taking ownership of domains that other aren't willing to"
+                "anti-pattern": "Doesn't create momentum in areas they lead: waits for someone else to pick it up for them (e.g. their manager)",
+                "remedy": "Being senior enough to lead an area implies trust from your manager; prove them right by creating momentum"
               },
               {
-                "anti-pattern": "Not creating momentum in areas you lead - waiting for someone else to pick it up for you (e.g. your manager)",
-                "remedy": "Being senior enough to lead an area implies trust from your manager. They need to know that you can be relied upon. Prove them right."
-              },
+                "anti-pattern": "Acts as an owner (design & decision making) but avoids the responsibility that comes with it (i.e. continuously supporting and pushing it forward)",
+                "remedy": "Many engineers enjoy hacking but not maintenance; a well-maintained product is often more valuable than an exciting but half-finished one"
+              }
+            ],
+            "Resources": null
+          }
+        },
+        {
+          "Dan 5": {
+            "Responsibilities": [
+              "Understands the yearly goals and main projects of many of the group's teams, including their business impact",
+              "Aware of yearly organizational growth (e.g. new headcount) within the group, aimed at supporting business needs",
+              "Can clearly articulate and explain to others (e.g. new or less experienced ICs) the motivation and business needs of core Forter systems",
+              "Can lead one of the main pillars in the group and become a point-of-contact for it when talking with others (e.g. product offering, scale, costs, security, precision, etc.)",
+              "Continuously involved in one or more teams' backlog grooming \u2014 helps various managers to balance tech debt, areas worth investing in, areas where we should de-risk/mitigate potential threats, etc",
+              "Able to meaningfully contribute to the group's roadmap, by identifying business opportunities that originate in their technical domain (eg cost savings, new features, streamlined delivery to customers, etc)"
+            ],
+            "Examples": [
+              "Leads the group's FinOps effort: tracking expenses, creating visibility, suggesting new ideas to cut costs, getting the buy-in, executing, reporting progress to the entire group, etc",
+              "VPs (VP Precision, VP Ops, VP Product, etc.) in the org feel the need to invite them to relevant meetings, instead of inviting their direct manager. The IC is the point-of-contact, and we don't need managers in every conversation"
+            ],
+            "Anti-Patterns": [
               {
-                "anti-pattern": "Acting as an owner (design & decision making) but avoiding the responsibility that comes with it (i.e. continuously supporting and pushing it forward)",
-                "remedy": "Many engineers enjoy hacking, but don't enjoy maintenance as much. Often, though, a less flashy but well maintained product is much more valuable than an exciting new one that's hacked together but then left half finished"
+                "anti-pattern": "Lets things live in a \"limbo\" for complicated domains (where ownership is a bit fluid). Is passive or unclear about time estimations, or makes excuses on why we've reached this state",
+                "remedy": "With great power comes great responsibility; step up and take ownership of domains others aren't willing to"
               }
             ],
             "Resources": [
@@ -738,25 +820,25 @@
           }
         },
         {
-          "Dan 5": {
+          "Dan 6": {
             "Responsibilities": [
-              "Understand the yearly business goals, using those to define the main projects the group should invest in during the year",
-              "As a leader of a main effort in the company, can represent it to management and outside of the company (customers, press/media, conferences, etc.)",
-              "Be continuously involved in the group's backlog grooming \u2014 help various managers to balance tech debt, areas worth investing in, areas where we should de-risk/mitigate potential threats, etc.",
-              "Provide feedback to extended managements (VP level and above) on things that might impose risk, ideas for better offering/security/scale, etc. Has a seat at the table when it comes to such conversations"
+              "Understands the yearly business goals, using those to define the main projects the group should invest in during the year",
+              "As a leader of a main effort at Forter, can represent it to management and outside of Forter (customers, press/media, conferences, etc.)",
+              "Continuously involved in the group's backlog grooming \u2014 helps various managers to balance tech debt, areas worth investing in, areas where we should de-risk/mitigate potential threats, etc",
+              "Provides feedback to extended managements (VP level and above) on things that might impose risk, ideas for better offering/precision/security/scale, etc. Has a seat at the table when it comes to such conversations"
             ],
             "Examples": [
-              "Put healthy pressure on management (VP level and above) to promote big ideas that are strategic to the company",
-              "Be involved in quarterly planning of the group, relying on business needs. Able consult multiple Team Leaders"
+              "Puts healthy pressure on management (VP level and above) to promote big ideas that are strategic to the company",
+              "Involved in quarterly planning of the group, relying on business needs. Can consult multiple Team Leaders. Note: might need a different planning process (and maybe more people / structure) to enable that"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Struggling to build good working relationships with the Team and Tech Leaders in the group, impacting their ability to initiate cross-team projects",
-                "remedy": "Good relationships often matter more than technical know-how. Try to cultivate, it not friendship, then at least good working relationships with the other leading devs and managers in your area"
+                "anti-pattern": "Struggles to build good working relationships with the Team and Tech Leaders in the group, impacting their ability to initiate cross-team projects",
+                "remedy": "Good relationships often matter more than technical know-how; cultivate good working relationships with other leading devs and managers"
               },
               {
-                "anti-pattern": "Being unable to translate your vast tech knowledge to the managerial level, making it harder for management to understand your value or why you should have a seat at the table",
-                "remedy": "Clear articulation will often get you farther when communicating with non-technical management than the technical knowledge itself. You need to cultivate this ability in you, or you won't be able to get buy-in on the really large/important projects"
+                "anti-pattern": "Unable to translate their vast tech knowledge to the managerial level, making it harder for management to understand their value or why they should have a seat at the table",
+                "remedy": "Clear articulation will get you further with non-technical management than technical knowledge itself; cultivate this ability"
               }
             ],
             "Resources": [
@@ -794,33 +876,33 @@
         {
           "Dan 1": {
             "Responsibilities": [
-              "Build a good relationship with others in the team",
-              "Maximize feedback from more experienced team members",
-              "Proactively try to learn from others \u2014 takes advantage of the team members' knowledge and experience",
-              "Learn and understand the team's processes and offer help where possible",
-              "Adopt a good natured attitude \u2014 positive, welcoming, open to learn/listen",
-              "Take an active part in the company's events and activities",
-              "Be friendly to others and seek to get acquainted with people in and outside your group",
-              "Take the time to introduce yourself and talk to others."
+              "Builds a good relationship with others in the team",
+              "Able to maximize feedback from more experienced team members",
+              "Proactively tries to learn from others: takes advantage of the team members' knowledge and experience",
+              "Learns and understands the team's processes and offers help where possible",
+              "Good natured attitude: positive, welcoming, open to learn/listen",
+              "Takes an active part in the company's events and activities",
+              "Is friendly to others and seeks to get acquainted with people in and outside their group",
+              "Takes the time to introduce themselves and talk to others"
             ],
             "Examples": [
-              "Capture in writing insights learned from others (e.g. how a system/process in the team work)",
-              "Offer to join the on-call rotation to learn the team's systems",
-              "Join company board-game nights, all-hands meetings, etc.",
-              "Take special care to get to know someone outside the group."
+              "Captures in writing insights learned from others (e.g. how a system/process in the team work)",
+              "Offers to join the on-call rotation to learn the team's systems",
+              "Joins company board-game nights, all-hands meetings, etc",
+              "Takes special care to get to know someone outside the group"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Being unwilling to join a team's efforts when not part of the task/project",
-                "remedy": "While some project might not be immediately related to your current task, try to learn from others working on it nonetheless"
+                "anti-pattern": "Unwilling to join a team's efforts when not part of the task/project",
+                "remedy": "While some projects might not be directly related to your task, try to learn from others working on them"
               },
               {
-                "anti-pattern": "Asking the same questions or demonstrating a lack of knowledge-gathering due to \"laziness\" (e.g. not writing things after being taught them)",
-                "remedy": "Asking questions is encouraged; asking the same questions signals an unwillingness to learn. Consider writing down whatever you learn"
+                "anti-pattern": "Asks the same questions or demonstrates a lack of knowledge-gathering due to \"laziness\" (e.g. not writing things after being taught them)",
+                "remedy": "Asking questions is encouraged; asking the same questions signals unwillingness to learn. Write down what you learn"
               },
               {
-                "anti-pattern": "Having a \"lone wolf\" attitude \u2014 not seeking to interact with others, in and outside the team",
-                "remedy": "Eventually you'll have to work with others in and outside the team. There's only so far you'll be able to get on your own"
+                "anti-pattern": "Has a \"lone wolf\" attitude \u2014 doesn't seek to interact with others, in and outside their team",
+                "remedy": "Eventually you'll have to work with others; there's only so far you can get on your own"
               }
             ],
             "Resources": [
@@ -835,34 +917,35 @@
         {
           "Dan 2": {
             "Responsibilities": [
-              "Understand the different roles each individual in the team has. Point to areas with a clear vacuum (lack of owner or knowledge)",
-              "Onboard new teammates",
-              "Take an active part in the team's day-to-day operations (on-call, urgent production issues on Slack, etc.)",
-              "Demonstrate concern for the team's well-being; personally try to help people around you",
-              "Be able to communicate teammates' issues to their direct manager early",
-              "Understand the importance of having hard conversations with your peers, to provide and receive useful and authentic feedback",
-              "Ask for feedback from others to continuously improve, both in craft and team work. Not waiting only for DRs/PRs to collect that feedback",
-              "Willingly share domain knowledge with other teams"
+              "Understand the different roles each individual in the team has. Points to areas with a clear vacuum (lack of owner or knowledge)",
+              "Onboards new teammates",
+              "Takes an active part in the team's day-to-day operations (on-call, urgent production issues on Slack, etc.)",
+              "Demonstrates concern for the team's well-being. Personally tries to help people around them",
+              "Able to communicate early teammates' issues to their direct manager",
+              "Understands the importance of having hard conversations with their peers, to provide and receive useful and authentic feedback",
+              "Asks for feedback from others to continuously improve, both in craft and team work. Doesn't wait only for DRs/PRs to collect that feedback",
+              "Willingly shares domain knowledge with other teams"
             ],
             "Examples": [
-              "Help to promote the company on social media (in an authentic way)",
-              "Spot that one of the team members is not feeling great about their progress or an assignment, try to be friendly and assist with resolving it. If necessary, suggest talking with the direct manager",
-              "Try to see if there are emergent patterns in the team, and reflect on those to the direct manager in order to verify we're working on resolving them",
-              "Clearly provide useful code-review comments. If spotting a pattern, articulate it f2f, to share higher-level feedback (\"it's not only this PR, it's also a pattern that shows...\")",
-              "Promote a job opening in the company on LinkedIn"
+              "Helps to promote the company on social media (in an authentic way)",
+              "Spots that one of the team members is not feeling great about their progress or an assignment, tries to be friendly and assists with resolving it. If necessary, suggest talking with the direct manager",
+              "Tries to see if there are emergent patterns in the team, and reflect on those to the direct manager in order to verify we're working on resolving them",
+              "Able to clearly provide useful code-review comments. If spots a pattern, can articulate it f2f, to share higher-level feedback (\"it's not only this PR, it's also a pattern that shows ...\")",
+              "Builds a short Python course for analysts",
+              "Promotes a job opening in the company on LinkedIn"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Feeling comfortable with not taking a fair share of the team's operations (or any other burden)",
+                "anti-pattern": "Feels comfortable with not taking a fair share of the team's operations (or any other burden)",
                 "remedy": "Earning the ire of others on the team is never a great way to progress"
               },
               {
-                "anti-pattern": "Talking behind teammates' backs instead of trying to resolve issues directly",
-                "remedy": "Hashing your difficulties with others might seem scary in the short term, but long-term it's the only way to foster trust and a good relationship"
+                "anti-pattern": "Talks behind teammates' backs instead of trying to resolve issues directly",
+                "remedy": "Hashing difficulties directly with others might seem scary short-term, but it's the only way to foster trust"
               },
               {
-                "anti-pattern": "Being difficult to work with due to the \"high tax\" people need to pay to provide feedback \u2014 always arguing instead of asking more questions, not taking responsibility, etc.",
-                "remedy": "If you make it difficult to give you feedback, people will stop trying and you'll stagnate. Try seeing feedback not as saying anything about your as a person, but rather as a way to improve in an area you have less visibility in"
+                "anti-pattern": "Difficult to work with due to the \"high tax\" people need to pay to provide feedback: always argues instead of asking more questions, not taking responsibility, etc",
+                "remedy": "If you make it difficult to give you feedback, people will stop trying and you'll stagnate"
               }
             ],
             "Resources": [
@@ -887,41 +970,40 @@
         {
           "Dan 3": {
             "Responsibilities": [
-              "Bring your unique talent to improve employee experience (consults with HR / team's manager to look for areas of pain)",
-              "Show willingness to mentor less experienced teammates, either in technical or execution skills (e.g. communication, buy-in, task management etc.)",
-              "Sponsor a less experienced team member with their direct manager. Help them to take on more challenging tasks, step outside of their comfort zone and build their confidence",
-              "Have a significant role in the team's operational excellence \u2014 production issues, knowledge capturing and sharing, providing context to others",
-              "Help to create and promote visibility of the team's achievements in the group/company",
-              "Be able to act as the team's point of contact in various discussions \u2014 have both the EQ, know-how and tech skills to take commitments, figure out open questions and, above all, take ownership (or at least drive to a resolution)",
-              "Play a part in the recruiting process \u2014 assist with the hiring process, crafting a Job Description, recommending missing skills that the team needs (to manager), etc.",
-              "Help to build the company's external brand by leading or assisting the effort (e.g. write a blog post or review one by a team member, provide feedback on others' efforts)",
-              "Consistently share information that can enrich others' knowledge and skills",
+              "Brings their unique talent to improve employee experience (consults with HR / team's manager to look for areas of pain)",
+              "Shows willingness to mentor less experienced teammates, either in technical or execution skills (e.g. communication, buy-in, task management etc.)",
+              "Sponsors a less experienced team member with their direct manager. Helps them to take on more challenging tasks, step outside of their comfort zone and build their confidence",
+              "Has a significant role in the team's operational excellence: production issues, knowledge capturing and sharing, providing context to others",
+              "Helps to create and promote visibility of the team's achievements in the group/company",
+              "Helps to build Forter's external brand by leading or assisting the effort (e.g. write a blog post or review one by a team member, provide feedback on others' efforts)",
+              "Consistently shares information that can enrich others' knowledge and skills",
               "Able and willing to notice and alert relevant engineers/managers to a lack of proper documentation (FAQ, Q&A or more in-depth), or over-reliance people's memories",
-              "Reduce organizational memory by committing knowledge to writing, and sharing it with the team/group"
+              "Reduces organizational memory by committing knowledge to writing, and sharing it with the team/group"
             ],
             "Examples": [
-              "Improve the developer experience by creating tools that would reduce tedious work",
-              "Come up with hackathon swag for all of the employees",
-              "Set up a fun team event",
-              "Provide evidence (specific PR links, Asana links, etc.) when trying to sponsor a less experienced team member to their manager",
-              "Send an email to the group with an interesting milestone for the team (why it's important, what does it mean for us, etc.) Even better \u2014 help someone else to write such an email, so they'll get the credit for it",
-              "Review blog posts written by others; recommend topics to write about; write blog posts to cover interesting aspects of the team's challenges",
-              "Share interesting blog posts / videos with takeaways worth noticing.",
-              "Write posts in the Knowledge Base system on solving problems that many people deal with (e.g. CI issue, or how to use a tool)",
-              "Write a System Overview and a Developer Handbook for the systems you own"
+              "Improves the developer experience by creating tools that would reduce tedious work",
+              "Come up with hackathon swag for all of the Forter employees",
+              "Sets up a fun team event",
+              "Provides evidence (specific PR links, Asana links, etc.) when trying to sponsor a less experienced team member to their manager",
+              "Sends an email to the group with an interesting milestone for the team (why it's important, what does it mean for us, etc.) Even better \u2014 helps someone else to write such an email, so they'll get the credit for it",
+              "Reviews blog posts written by others; recommends topics to write about; writes blog posts to cover interesting aspects of the team's challenges",
+              "Suggests new ideas or content for https://forter.dev/ or our technical blog https://tech.forter.com/ ",
+              "Joins #rnd-reading and shares interesting blog posts / videos with takeaways worth noticing",
+              "Writes posts in our Knowledge Base system on solving problems that many people deal with (e.g. CI issue, or how to use a tool)",
+              "Writes a System Overview and a Developer Handbook for the systems they own"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Being unwilling to bend to the team's needs. Focusing only on the ideal (\"pure\") solution and neglecting adoption and other considerations",
-                "remedy": "Sometimes legacy/cost/know-how considerations make it better to choose a solution that's less \"perfect\" in theory, but actually better for the team"
+                "anti-pattern": "Unwilling to bend to the team's needs. Focuses only on the ideal (\"pure\") solution and neglecting adoption and other considerations",
+                "remedy": "Sometimes legacy/cost/know-how considerations make it better to choose a less 'perfect' but more practical solution"
               },
               {
-                "anti-pattern": "Talking down to people, making them feel insecure",
-                "remedy": "Just don't. People will resent and avoid you if you do that"
+                "anti-pattern": "Talks down to people, making them feel insecure",
+                "remedy": "Just don't. People will resent and avoid you, which limits your effectiveness"
               },
               {
-                "anti-pattern": "Taking credit for work done in cooperation with others (especially less experienced team members)",
-                "remedy": "Always highlight the \"team effort\" aspect of projects. Remember that you once needed this extra push yourself"
+                "anti-pattern": "Takes credit for work done in cooperation with others (especially less experienced team members)",
+                "remedy": "Always highlight the team effort aspect of projects; remember that you once needed this extra push yourself"
               }
             ],
             "Resources": [
@@ -951,56 +1033,35 @@
         {
           "Dan 4": {
             "Responsibilities": [
-              "Strive to become a \"Bar Raiser\" for the team (see resource below)",
-              "Be able to suggest big changes to the way the team works by collecting feedback from internal customers, or by adopting good practices from other teams",
-              "Represent the team's interest in larger discussions",
-              "Detect a vacuum that the team can pick up and increase their ownership, and thus impact",
-              "Come up with ideas for processes the team needs to add to support future growth or current pains/needs; lead buy-in and adoption",
-              "Act as a backup for the team's manager in various discussions and assisting team members",
-              "Understand well the team's problems and be able to take ownership by constantly trying to improve them",
-              "Have a significant role in recruiting talent. Consistently interview potential hires",
-              "Be able to be an evangelist for the company in events",
-              "Improve the recruiting process by avoiding waste, reducing false positive (bad hires) and false negatives (hires we should have done)",
-              "Show willingness to mentor experienced engineers in the group",
-              "Improve or create documentation on important processes (e.g. write Better Nexts, conducting Design or Code Reviews, leading a Project, etc.)",
-              "Mentor those that take part in the hiring process, striving to improve the quality of the interview \u2014 propose questions to ask, pitfalls to avoid, things to look for in candidates, summarizing an interview, etc."
+              "Able to detect a vacuum that the team can pick up and increase their ownership, and thus impact",
+              "Can suggest big changes to the way the team works by collecting feedback from internal customers, or by adopting good practices from other teams",
+              "Improves or creates documentation on important processes (e.g. write Better Nexts, conducting Design or Code Reviews, leading a Project, etc.)",
+              "Understands well the team's problems and is able to take ownership by constantly trying to improve them",
+              "Can act as the team's point of contact in various discussions \u2014 has both the EQ, know-how and tech skills to take commitments, figure out open questions and, above all, take ownership (or at least drive to a resolution)",
+              "Plays a part in the recruiting process: assists with the hiring process, crafting a Job Description, recommending missing skills that the team needs (to manager), etc"
             ],
             "Examples": [
-              "Improve the team's process and tools for dealing with tickets",
-              "Have the maturity to pick up and lead a high-impact project that no one else wants to lead (e.g. due to friction of different opinions, a lot of legacy code, etc.)",
-              "Propose tools and processes for using common libraries in the company, even if the owner is in a different team",
-              "Take the time to understand and improve processes when internal customers complain about them. Be able to provide some options on the spot, to see if they solve the majority of the problem. Summarize the feedback internally to create visibility and suggest improvements",
-              "Suggest questions we should use in different phases of the interview process (including \"good answers\" and \"bad answers\")",
-              "Prepare home assignments for interviews",
-              "Prepare onboarding resources for new or less experienced employees",
-              "Provide a well-crafted (concise, clear) document with relevant pains and requirements to someone working on a DR in a related area (e.g. a new tool that the team will use on daily basis, or one that has production implications)",
-              "Join a meeting instead of the team's manager. Have the context and confidence to provide answers on the spot; take notes on open questions (and get them resolved quickly); have the trust and confidence of other members in the meeting"
+              "Improves the team's process and tools for dealing with tickets",
+              "Prepares onboarding resources for new or less experienced employees",
+              "Takes the time to understand and improve processes when internal customers complain about them. Able to provide some options on the spot, to see if they solve the majority of the problem. Summarizes the feedback internally to create visibility and suggest improvements",
+              "Able to provide a well-crafted (concise, clear) document with relevant pains and requirements to someone working on a DR in a related area (e.g. a new tool that the team will use on daily basis, or one that has production implications)",
+              "Contributes to Reading Material for a new Forter Engineer"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Being only concerned with delivery without considering the pains and needs of the team. Not investing time to discuss areas of pain with the team's manager. Not thinking about increasing the team's velocity or happiness",
-                "remedy": "Increasing the team's velocity is often a much better long-term investment of your time then working on your task, since it improves the performance of many people"
+                "anti-pattern": "Only concerned with delivery without considering the pains and needs of the team. Doesn't invest time to discuss areas of pain with the team's manager. Doesn't think about increasing the team's velocity or happiness",
+                "remedy": "Increasing the team's velocity is often a much better long-term investment than working on your own task"
               },
               {
-                "anti-pattern": "Demonstrating immaturity when speaking about the team's process, tools or problems with other teams or people outside of the organization. Being a judge and a (gossip) reporter instead of an owner",
-                "remedy": "While it's ok to acknowledge issues with your team's offering, badmouthing it in front of other teams is a bad idea. Try to understand the pains others raise, offer suggestions/solutions where applicable, and bring the ideas back to the team"
+                "anti-pattern": "Demonstrates immaturity when speaking about the team's process, tools or problems with other teams or people outside of the organization. Is a judge and a (gossip) reporter instead of an owner",
+                "remedy": "While it's ok to acknowledge issues, try to understand pains, offer solutions, and bring ideas back to the team"
               },
               {
-                "anti-pattern": "Being too quick to rule out ideas or suggestions, without coming up with well-thought alternatives",
-                "remedy": "Putting down ideas is easier than coming up with them. When ruling out another person's suggestion, consider the original need that sparked it, and see if you can come up with an alternative"
+                "anti-pattern": "Too quick to rule out ideas or suggestions, without coming up with well-thought alternatives",
+                "remedy": "Putting down ideas is easier than coming up with them; when ruling out a suggestion, offer an alternative"
               }
             ],
             "Resources": [
-              {
-                "type": "article",
-                "name": "Amazon's Current Employees Raise the Bar for New Hires",
-                "link": "https://www.wsj.com/articles/SB10001424052702304753504579285133045398344"
-              },
-              {
-                "type": "article",
-                "name": "Lessons from Keith Rabois Essay 5 - How to Become a Magnet for Talent and Assess Talent",
-                "link": "https://delian.io/lessons-5"
-              },
               {
                 "type": "article",
                 "name": "6 Lessons I learned while implementing technical RFCs as a decision making tool",
@@ -1017,51 +1078,91 @@
         {
           "Dan 5": {
             "Responsibilities": [
-              "Promote (by getting buy-in) successful processes on the group level (or at least in multiple teams)",
-              "Create opportunities for others to shine, by helping them identify areas we can afford to innovate and take risks for potentially great rewards",
-              "Act as a mentor for other experienced engineers in the team, or recommend them for mentors outside of the team (or even company). Either in a specific skill/technology, or more broadly around how they promote their ideas and projects",
-              "Take a proactive role in showcasing the team's strengths and achievements. Be able to represent them within the company (e.g. All Hands, or Extended Management sessions) or outside of it (e.g. conferences, blog posts)",
-              "Play an integral part in the recruiting process for multiple teams (as a \"Bar Raiser\") \u2014 have a clear process and be able to provide clear feedback on candidates (biases-aware, strong examples, etc.)",
-              "Be able to \"sell\" the company extremely well to potential hires",
-              "Consistently reduce organizational memory by producing high-quality knowledge capturing (docs, lectures, arch topics) around the most critical parts of the system",
-              "Act as a role model when promoting new initiatives for technologies or processes \u2014 be able to create buy-in, produce high quality content around it and implement the idea end to end",
-              "Act as a leader around building an external brand for the company \u2014 take time to work on blog posts, lectures, open-source projects or anything else that might help attract talent"
+              "Strives to become a \"Bar Raiser\" for the team (see resource below)",
+              "Comes up with ideas for processes the team needs to add to support future growth or current pains/needs. Leads their buy-in and adoption",
+              "Can act as a backup for the team's manager in various discussions and assisting team members",
+              "Has a significant role in recruiting talent. Consistently interviews potential hires. Improves the recruiting process by avoiding waste, reducing false positive (bad hires) and false negatives (hires we should have done)",
+              "Mentors those that take part in the hiring process, striving to improve the quality of the interview: proposes questions to ask, pitfalls to avoid, things to look for in candidates, summarizing an interview, etc",
+              "Can be an evangelist for the company in events",
+              "Show willingness to mentor experienced engineers in the group",
+              "Takes a proactive role in showcasing the team's strengths and achievements. Able to represent them within the company (e.g. All Hands, or Extended Management sessions) or outside of it (e.g. conferences, blog posts)",
+              "Consistently reduces organizational memory by producing high-quality knowledge capturing (docs, lectures, arch topics) around the most critical parts of the system",
+              "Acts as a role model when promoting new initiatives for technologies or processes \u2014 can create buy-in, produce high quality content around it and implement the idea end to end"
             ],
             "Examples": [
-              "Be perceived as a true believer in the company's mission and talent when talking with others outside of the company",
-              "Create momentum by writing proper documentation (\"documentation spike/blitz\") in areas that desperately need it. Write a few docs and convince others to join. Announce it to others and proactively seek feedback on that",
-              "Offer an experienced engineer to work together to help them improve a skill",
-              "Present a big accomplishment of the team in an All-hands meeting",
-              "Contribute to Reading Material for a new Engineer in the company",
-              "Affect in a meaningful way the KPI of \"did you hear about our company\" (i.e. improves the chances that people will say \"Yes! I've heard a talk by X or read a blog post by Y that was fantastic..\")"
+              "Has the maturity to pick up and lead a high-impact project that no one else wants to lead (e.g. due to friction of different opinions, a lot of legacy code, etc.)",
+              "Proposes tools and processes for using common libraries in the company, even if the owner is in a different team (e.g. forter-X package in python)",
+              "Can suggest questions we should use in different phases of the interview process (including \"good answers\" and \"bad answers\")",
+              "Prepares home assignments for interviews",
+              "Able to join a meeting instead of the team's manager. Has the context and confidence to provide answers on the spot; can take notes on open questions (and get them resolved quickly); has the trust and confidence of other members in the meeting"
             ],
             "Anti-Patterns": [
               {
-                "anti-pattern": "Only focusing on the pains of the group, while neglecting the needs of the team, which might lead to resentment by the teammates",
-                "remedy": "While it's a good idea generally to progressively increase the radius of your impact, try not to neglect your team; show that you're still part of it"
+                "anti-pattern": "Only focuses on the pains of the group, while neglecting the needs of the team, which might lead to resentment by the teammates. For example, leading a new shiny initiative, while not paying attention to the team's oncall/KTLO",
+                "remedy": "While increasing the radius of your impact is good, don't neglect your team; show that you're still part of it"
               },
               {
-                "anti-pattern": "Being passive about promoting the team members and achievements to the group or company",
-                "remedy": "At this level, you have a loud void; use it to hype people and achievements to those who might not have the opportunity to hear from the more junior devs"
+                "anti-pattern": "Constantly fails to get buy-in for new initiatives due to lack of proper reasoning behind them (technical and/or business needs). Relies too much on their title",
+                "remedy": "Being at this level doesn't mean everything you say is automatically accepted; you still need to convince people"
               },
               {
-                "anti-pattern": "Creating the impression that big innovative new ideas should only come from Principal Engineers",
-                "remedy": "This is, simply, wrong. Don't discourage more junior devs from suggesting (and, indeed, implementing) big projects"
+                "anti-pattern": "Become numb to problems because we\u2019ve been living with them for a long time. Convinces themselves that there\u2019s no real problem there",
+                "remedy": "The fact that 'things have always been like this' doesn't make it good; take new hires' complaints about systems/tools seriously"
+              }
+            ],
+            "Resources": [
+              {
+                "type": "article",
+                "name": "Amazon's Current Employees Raise the Bar for New Hires",
+                "link": "https://www.wsj.com/articles/SB10001424052702304753504579285133045398344"
               },
               {
-                "anti-pattern": "Constantly failing to get buy-in for new initiatives due to lack of proper reasoning behind them (technical and/or business needs). Relying too much on the title",
-                "remedy": "Being at this level doesn't mean everything you say is automatically accepted by all; you still need to convince people the same way as before"
+                "type": "article",
+                "name": "Lessons from Keith Rabois Essay 5 - How to Become a Magnet for Talent and Assess Talent",
+                "link": "https://delian.io/lessons-5"
               },
               {
-                "anti-pattern": "Becoming numb to problems because you\u2019ve been living with them for a long time (or convincing yourself that there\u2019s no real problem there)",
-                "remedy": "The fact that \"things have always been like this\" doesn't make it necessarily a good thing; if you see all new hires voicing their problems with a system/tool/process, take it seriously"
+                "type": "article",
+                "name": "How to plan?",
+                "link": "https://kellanem.com/notes/how-to-plan"
+              }
+            ]
+          }
+        },
+        {
+          "Dan 6": {
+            "Responsibilities": [
+              "Promotes (by getting buy-in) successful processes on the group level (or at least in multiple teams)",
+              "Creates opportunities for others to shine, by helping them identify areas we can afford to innovate and take risks for potentially great rewards",
+              "Can act as a mentor for other experienced engineers in the team, or recommend them for mentors outside of the team (or even company). Either in a specific skill/technology, or more broadly around how they promote their ideas and projects",
+              "Takes a proactive role in showcasing the Engineering's strengths and achievements. Able to represent them within the company (e.g. All Hands, or Extended Management sessions) or outside of it (e.g. conferences, blog posts)",
+              "Plays an integral part in the recruiting process for multiple teams (as a \"Bar Raiser\") \u2014 has a clear process and is able to provide clear feedback on candidates (biases-aware, strong examples, etc.)",
+              "Can \"sell\" the company extremely well to potential hires",
+              "Acts as a leader around building an external brand for the company: takes time to work on blog posts, lectures, open-source projects or anything else that might help us attract talent"
+            ],
+            "Examples": [
+              "Perceived as a true believer in the company's mission and talent when talking with others outside of the company",
+              "Creates momentum by writing proper documentation (\"documentation spike/blitz\") in areas that desperately need it. Writes a few docs and convinces others to join. Announces it to others and proactively seeks feedback on that",
+              "Offers an experienced engineer to work together to help them improve a skill",
+              "Affects in a meaningful way the KPI of \"did you hear about Forter\" (i.e. improves the chances that people will say \"Yes! I've heard a talk by X or read a blog post by Y that was fantastic..\")",
+              "Contributes to https://forter.dev/teams/ pages to better attract talent",
+              "Launches an internal Survey to understand the users' pains and needs"
+            ],
+            "Anti-Patterns": [
+              {
+                "anti-pattern": "Is passive about promoting the team members and achievements to the group or company",
+                "remedy": "At this level, you have a loud voice; use it to hype people and achievements to those who might not hear from junior devs"
+              },
+              {
+                "anti-pattern": "Creates the impression that big innovative new ideas should only come from Principal Engineers",
+                "remedy": "This is simply wrong. Don't discourage more junior devs from suggesting and implementing big projects"
               }
             ],
             "Resources": [
               {
                 "type": "article",
                 "name": "\u2018Give Away Your Legos\u2019 and Other Commandments for Scaling Startups",
-                "link": "https://review.firstround.com/give-away-your-legos-and-other-commandments-for-scaling-startups"
+                "link": ""
               },
               {
                 "type": "article",
