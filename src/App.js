@@ -24,9 +24,8 @@ function App() {
               <Router exact path="/">
                   <div>
                       <Switch>
-                          <Route path="/questionnaire">
-                              <Questionnaire />
-                          </Route>
+                          <Route path="/questionnaire/result/:level" component={Questionnaire} />
+                          <Route path="/questionnaire" component={Questionnaire} />
                           <Route exact path="/">
                               <Home />
                           </Route>

@@ -3,7 +3,7 @@ import { quizQuestions, ROLES } from './quizQuestions';
 
 import Quiz from '../components/Quiz';
 import Result from '../components/Result';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 export class Questionnaire extends Component {
     constructor(props) {
@@ -23,6 +23,19 @@ export class Questionnaire extends Component {
     }
 
     componentDidMount() {
+        // If URL contains a result level, restore it
+        const { level } = this.props.match.params;
+        if (level) {
+            const roleValues = Object.values(ROLES);
+            const match = roleValues.find(
+                r => r.toLowerCase().split(' ').join('-') === level
+            );
+            if (match) {
+                this.setState({ result: match });
+                return;
+            }
+        }
+
         const shuffledAnswerOptions = quizQuestions.map(question =>
             this.shuffleArray(question.answers)
         );
@@ -132,7 +145,9 @@ export class Questionnaire extends Component {
     }
 
     setResults(result) {
+        const slug = result.toLowerCase().split(' ').join('-');
         this.setState({ result });
+        this.props.history.push('/questionnaire/result/' + slug);
     }
 
     renderQuiz() {
@@ -165,4 +180,4 @@ export class Questionnaire extends Component {
     }
 }
 
-export default Questionnaire;
+export default withRouter(Questionnaire);

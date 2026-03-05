@@ -1,23 +1,39 @@
-.result-end h4{
-    font-size: 18px;
-    margin: 30px 0 70px;
-}
+/* ==========================================================
+   RESULT PAGE
+   ========================================================== */
 
-.result-end h3{
-    font-size: 20px;
-    margin: 10px 0 50px;
+/* Heading hierarchy */
+.result-end h4 {
+    font-size: 16px;
+    margin: 24px 0 48px;
+    color: var(--color-text-muted, rgba(30, 34, 52, 0.45));
     font-weight: 500;
+    letter-spacing: -0.2px;
 }
 
-.result-end h2{
-    font-size: 25px;
-    font-weight: 600;
+.result-end h3 {
+    font-size: 20px;
+    margin: 10px 0 40px;
+    font-weight: 500;
+    color: var(--color-text-secondary, #4a4f6a);
 }
 
-.categories{
+.result-end h2 {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #5a7dff, #9b6ff5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ==========================================================
+   CATEGORY CARDS
+   ========================================================== */
+.categories {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 16px;
 }
 
 .categories a {
@@ -25,42 +41,65 @@
     flex-direction: row-reverse;
     align-self: center;
     align-items: center;
-    padding: 25px;
-    gap: 10px;
+    padding: 24px 28px;
+    gap: 16px;
     border-radius: 20px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     height: 150px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    backdrop-filter: blur(16px);
+    box-shadow:
+        0 4px 20px rgba(90, 125, 255, 0.04),
+        0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
-.title{
-    font-weight: 700;
-    display: block;
+.categories a:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 12px 32px rgba(90, 125, 255, 0.1),
+        0 2px 6px rgba(0, 0, 0, 0.04);
+    border-color: rgba(90, 125, 255, 0.2);
 }
 
-.text{
-    font-weight: 300;
-}
-
-.categories a:hover{
-    color: #5496f6;
-}
-
-.categories a:nth-child(even){
+.categories a:nth-child(even) {
     flex-direction: row;
 }
 
-.icon{
-    transform: scale(0.5);
-}
-
-a{
-    text-decoration: none;
-    color: #1f2234;
-}
-
-.squircles .squircle span{
-    font-size: 13px;
-    color: black;
+.title {
     font-weight: 700;
-    text-shadow: 0px 0px 20px white, 0px 0px 10px white;
+    display: block;
+    font-size: 18px;
+    color: var(--color-text, #1a1d2e);
+    letter-spacing: -0.2px;
+}
+
+.text {
+    font-weight: 400;
+    color: var(--color-text-secondary, #4a4f6a);
+    line-height: 1.5;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.icon {
+    transform: scale(0.55);
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+/* Global link reset */
+a {
+    text-decoration: none;
+    color: var(--color-text, #1a1d2e);
+}
+
+/* ==========================================================
+   SQUIRCLE BADGES
+   ========================================================== */
+.squircles .squircle span {
+    font-size: 13px;
+    color: #1a1d2e;
+    font-weight: 700;
+    text-shadow: 0 0 20px white, 0 0 10px white;
 }

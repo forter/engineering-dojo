@@ -1,11 +1,11 @@
 .results h1{
     font-size: 30px;
     text-align: start;
-    color: #5496f6;
+    color: var(--color-accent, #5a7dff);
 }
 
 gray{
-    color: gray;
+    color: var(--color-text-muted, rgba(30, 34, 52, 0.45));
 }
 
 .results h2{
@@ -14,7 +14,7 @@ gray{
 
 .results h3{
     font-weight: 600;
-    color: #868e96;
+    color: var(--color-text-secondary, #4a4f6a);
 }
 
 .introduction{
@@ -30,21 +30,22 @@ gray{
 
 .introduction span{
     font-size: 16px;
-    color: #868e96;
+    color: var(--color-text-secondary, #4a4f6a);
     margin-bottom: 120px;
 }
 
 .example, .anti-pattern-block, .responsibility, .resource{
-    background: #f1f3f5;
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 20px;
     padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .examples, .anti-patterns, .responsibilities, .resources{
     display: grid;
     gap: 20px;
     padding: 25px;
-    background: #f8f9fa;
+    background: rgba(245, 247, 255, 0.6);
     border-radius: 20px;
     margin: 20px 0 50px;
     line-height: 30px;

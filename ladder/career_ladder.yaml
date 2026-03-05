@@ -341,7 +341,7 @@ Ladder:
           Resources:
             - type: article
               name: Don’t Yolo Hard Conversations
-              link: ""
+              link: https://www.pragmaticengineer.com/dont-yolo-hard-conversations/
       - Dan 5:
           Responsibilities:
             - Able to plan and execute large projects with complex requirements and interdependencies across teams and systems
@@ -729,7 +729,7 @@ Ladder:
           Resources:
             - type: article
               name: ‘Give Away Your Legos’ and Other Commandments for Scaling Startups
-              link: ""
+              link: https://a16z.com/2018/09/17/give-away-your-legos-and-other-commandments-for-scaling-startups/
             - type: article
               name: Lies Enterprise Architects Told Me
               link: https://www.youtube.com/watch?v=jSqgGdSvQ4E

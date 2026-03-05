@@ -1,69 +1,123 @@
-.quiz h1{
-    font-size: 30px;
+/* ==========================================================
+   QUIZ PAGE
+   ========================================================== */
+
+/* Breadcrumb / page title */
+.quiz h1 {
+    font-size: 26px;
     text-align: start;
-    color: #5496f6;
-    margin-bottom: 20px;
+    color: var(--color-accent, #5a7dff);
+    margin-bottom: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
+.quiz h1 a {
+    color: var(--color-accent, #5a7dff);
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.quiz h1 a:hover {
+    opacity: 0.7;
+}
+
+.quiz h1 gray {
+    color: var(--color-text-muted, rgba(30, 34, 52, 0.35));
+    margin: 0 4px;
+}
+
+/* ==========================================================
+   QUIZ CONTAINER — frosted glass card
+   ========================================================== */
 .container {
     position: relative;
     margin: 0 auto;
-    background: #fff;
-    border-radius: 18px;
-    padding: 10px 0;
-    border: 5px solid black;
+    background: rgba(255, 255, 255, 0.72);
+    border-radius: 20px;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow:
+        0 8px 32px rgba(90, 125, 255, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+    backdrop-filter: blur(16px);
+    overflow: hidden;
 }
 
-.container.result{
+.container.result {
     background: transparent;
     border: 0;
     box-shadow: none;
     font-size: 20px;
+    backdrop-filter: none;
+    overflow: visible;
 }
 
-.result h2{
+.result h2 {
     font-size: 26px;
 }
 
-.result h3{
+.result h3 {
     margin-top: 30px;
 }
 
-/* Result Component */
 .result {
     padding: 0;
 }
 
-/* Quiz Component */
+/* ==========================================================
+   QUESTION COUNT — progress indicator
+   ========================================================== */
+.questionCount {
+    padding: 24px 32px 0;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-text-muted, rgba(30, 34, 52, 0.45));
+}
+
+.questionCount span {
+    color: var(--color-accent, #5a7dff);
+    font-weight: 700;
+}
+
+/* ==========================================================
+   QUESTION TEXT
+   ========================================================== */
+.question {
+    color: var(--color-text, #1a1d2e);
+    margin: 0;
+    padding: 16px 32px 28px;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+}
+
+/* ==========================================================
+   ANSWER OPTIONS
+   ========================================================== */
 .answerOptions {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-/* QuestionCount Component */
-.questionCount {
-    padding: 1.5rem 2.5rem 0;
-    font-size: 14px;
-    color: #5496f6;
-}
-
-/* Question Component */
-.question {
-    color: #5496f6;
-    margin: 0;
-    padding: 0.5rem 2.5rem 1.5rem 2.5rem;
-}
-
-/* AnswerOption Component */
 .answerOption {
-    border-top: 1px solid #f8f9fa;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background-color 0.2s ease;
+}
+
+.answerOption:last-child {
+    border-radius: 0 0 20px 20px;
 }
 
 .answerOption:hover {
-    background-color: #e7f5ff;
+    background-color: rgba(90, 125, 255, 0.06);
 }
 
+/* Hidden native radio */
 .radioCustomButton {
     position: absolute;
     width: auto;
@@ -77,48 +131,69 @@
     cursor: pointer;
 }
 
+/* Answer label text */
 .radioCustomLabel {
     position: relative;
-    width: calc(100% - 120px);
+    width: calc(100% - 100px);
     margin: 0;
-    padding: 1.5rem 2.5rem 1.5rem 5rem;
+    padding: 20px 28px 20px 64px;
     font-size: 16px;
-    line-height: 1;
+    line-height: 1.45;
     top: 0;
     left: 0;
-    color: black;
+    color: var(--color-text, #1a1d2e);
+    transition: color 0.2s;
 }
 
+/* Custom radio circle */
 .radioCustomButton ~ .radioCustomLabel:before {
     position: absolute;
-    top: 20px;
-    left: 38px;
-    width: 28px;
-    height: 28px;
+    top: 50%;
+    left: 28px;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
     content: '';
     display: inline-block;
     vertical-align: middle;
     background: #fff;
-    border: 1px solid #bbb;
+    border: 2px solid rgba(0, 0, 0, 0.15);
     border-radius: 50%;
-    transition: all 0.3s;
+    transition: all 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
+/* Hover state for radio */
+.answerOption:hover .radioCustomButton ~ .radioCustomLabel:before {
+    border-color: var(--color-accent, #5a7dff);
+}
+
+/* Checked state */
 .radioCustomButton:checked ~ .radioCustomLabel:before {
     content: '';
-    background: #37b24d url('../assets/icon-check.svg') no-repeat;
-    background-size: 27px;
-    border-color: #37b24d;
+    background: var(--color-accent, #5a7dff) url('../assets/icon-check.svg') no-repeat center;
+    background-size: 18px;
+    border-color: var(--color-accent, #5a7dff);
+    box-shadow: 0 2px 8px rgba(90, 125, 255, 0.3);
 }
 
-/* Animation */
+.radioCustomButton:checked ~ .radioCustomLabel {
+    color: var(--color-accent, #5a7dff);
+    font-weight: 500;
+}
+
+/* ==========================================================
+   FADE TRANSITIONS
+   ========================================================== */
 .fade-enter {
     opacity: 0;
+    transform: translateX(20px);
 }
 
 .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 0.5s ease-in-out 0.3s;
+    transform: translateX(0);
+    transition: opacity 0.4s ease-in-out 0.2s, transform 0.4s ease-in-out 0.2s;
 }
 
 .fade-leave {
@@ -127,18 +202,22 @@
     left: 0;
     width: 100%;
     opacity: 1;
+    transform: translateX(0);
 }
 
 .fade-leave.fade-leave-active {
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transform: translateX(-20px);
+    transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
 }
 
 .fade-appear {
     opacity: 0;
+    transform: translateY(10px);
 }
 
 .fade-appear.fade-appear-active {
     opacity: 1;
-    transition: opacity 0.5s ease-in-out;
+    transform: translateY(0);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
