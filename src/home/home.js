@@ -28,7 +28,11 @@ export default function Home() {
             <Link to="/questionnaire"><button> YES, SENSEI! </button></Link>
             <label>all free, no emails, no BS. We’re Engineers.</label>
         </div>
-
+        <div className="call-to-action">
+            <a href="https://docs.google.com/spreadsheets/d/1e71fL0b5lYyac_SMSZZFHqID_VjixPwUOuCqFXtzGL4/edit?pli=1&gid=0#gid=0" target="_blank" rel="noopener noreferrer">
+                <button> VIEW THE SPREADSHEET </button>
+            </a>
+        </div>
         <h2> From the creators of other fun things </h2>
 
         <div className="card-group">
