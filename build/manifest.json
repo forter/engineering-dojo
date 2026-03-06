@@ -1,6 +1,6 @@
 {
-  "short_name": "Dojo Engineering",
-  "name": "Dojo engineering - Karate your way to the top of the engineering ladder",
+  "short_name": "Engineering Dojo",
+  "name": "Engineering Dojo — Cross the Road, Level Up Your Career",
   "icons": [
     {
       "src": "favicon.ico",
@@ -15,6 +15,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#eae3d3",
+  "background_color": "#eae3d3"
 }

@@ -2,29 +2,20 @@
    QUIZ PAGE
    ========================================================== */
 
-/* Breadcrumb / page title */
-.quiz h1 {
-    font-size: 26px;
-    text-align: start;
-    color: var(--color-accent, #5a7dff);
-    margin-bottom: 28px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+/* Header area */
+.quiz-header {
+    margin-bottom: 40px;
+    text-align: center;
 }
 
-.quiz h1 a {
-    color: var(--color-accent, #5a7dff);
-    text-decoration: none;
-    transition: opacity 0.2s;
-}
 
-.quiz h1 a:hover {
-    opacity: 0.7;
-}
 
-.quiz h1 gray {
-    color: var(--color-text-muted, rgba(30, 34, 52, 0.35));
-    margin: 0 4px;
+.quiz-subtitle {
+    font-size: 15px;
+    color: rgba(42, 37, 32, 0.4);
+    margin: 0;
+    font-style: italic;
+    letter-spacing: 0.3px;
 }
 
 /* ==========================================================
@@ -33,14 +24,15 @@
 .container {
     position: relative;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.72);
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 24px;
     padding: 0;
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(42, 37, 32, 0.08);
     box-shadow:
-        0 8px 32px rgba(90, 125, 255, 0.06),
-        0 1px 3px rgba(0, 0, 0, 0.04);
-    backdrop-filter: blur(16px);
+        0 8px 40px rgba(0, 0, 0, 0.06),
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
     overflow: hidden;
 }
 
@@ -66,33 +58,65 @@
 }
 
 /* ==========================================================
-   QUESTION COUNT — progress indicator
+   QUESTION COUNT — progress bar with chicken evolution
    ========================================================== */
 .questionCount {
-    padding: 24px 32px 0;
+    padding: 28px 32px 0;
+}
+
+.questionCount-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.questionCount-sprite {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.questionCount-text {
     font-size: 13px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--color-text-muted, rgba(30, 34, 52, 0.45));
+    letter-spacing: 1.5px;
+    color: rgba(42, 37, 32, 0.4);
 }
 
-.questionCount span {
-    color: var(--color-accent, #5a7dff);
-    font-weight: 700;
+.questionCount-text span {
+    color: var(--color-accent, #d4920a);
+}
+
+.questionCount-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(42, 37, 32, 0.08);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.questionCount-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #d4920a, #b8800a);
+    border-radius: 4px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 12px rgba(212, 146, 10, 0.3);
 }
 
 /* ==========================================================
    QUESTION TEXT
    ========================================================== */
 .question {
-    color: var(--color-text, #1a1d2e);
+    color: var(--color-text, #2a2520);
     margin: 0;
-    padding: 16px 32px 28px;
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.4;
-    letter-spacing: -0.3px;
+    padding: 20px 32px 28px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.4px;
 }
 
 /* ==========================================================
@@ -100,21 +124,22 @@
    ========================================================== */
 .answerOptions {
     margin: 0;
-    padding: 0;
+    padding: 0 12px 12px;
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
 .answerOption {
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    transition: background-color 0.2s ease;
-}
-
-.answerOption:last-child {
-    border-radius: 0 0 20px 20px;
+    border-radius: 16px;
+    transition: all 0.25s ease;
+    position: relative;
 }
 
 .answerOption:hover {
-    background-color: rgba(90, 125, 255, 0.06);
+    background: rgba(212, 146, 10, 0.08);
+    transform: translateX(4px);
 }
 
 /* Hidden native radio */
@@ -134,52 +159,56 @@
 /* Answer label text */
 .radioCustomLabel {
     position: relative;
-    width: calc(100% - 100px);
+    width: calc(100% - 80px);
     margin: 0;
-    padding: 20px 28px 20px 64px;
-    font-size: 16px;
-    line-height: 1.45;
+    padding: 18px 24px 18px 58px;
+    font-size: 15px;
+    line-height: 1.5;
     top: 0;
     left: 0;
-    color: var(--color-text, #1a1d2e);
-    transition: color 0.2s;
+    color: rgba(42, 37, 32, 0.65);
+    transition: all 0.25s ease;
 }
 
 /* Custom radio circle */
 .radioCustomButton ~ .radioCustomLabel:before {
     position: absolute;
     top: 50%;
-    left: 28px;
+    left: 20px;
     transform: translateY(-50%);
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     content: '';
     display: inline-block;
     vertical-align: middle;
-    background: #fff;
-    border: 2px solid rgba(0, 0, 0, 0.15);
+    background: rgba(42, 37, 32, 0.04);
+    border: 2px solid rgba(42, 37, 32, 0.15);
     border-radius: 50%;
-    transition: all 0.25s ease;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Hover state for radio */
 .answerOption:hover .radioCustomButton ~ .radioCustomLabel:before {
-    border-color: var(--color-accent, #5a7dff);
+    border-color: rgba(212, 146, 10, 0.5);
+    background: rgba(212, 146, 10, 0.08);
+}
+
+.answerOption:hover .radioCustomLabel {
+    color: rgba(42, 37, 32, 0.9);
 }
 
 /* Checked state */
 .radioCustomButton:checked ~ .radioCustomLabel:before {
     content: '';
-    background: var(--color-accent, #5a7dff) url('../assets/icon-check.svg') no-repeat center;
-    background-size: 18px;
-    border-color: var(--color-accent, #5a7dff);
-    box-shadow: 0 2px 8px rgba(90, 125, 255, 0.3);
+    background: #d4920a url('../assets/icon-check.svg') no-repeat center;
+    background-size: 16px;
+    border-color: #d4920a;
+    box-shadow: 0 2px 12px rgba(212, 146, 10, 0.4);
 }
 
 .radioCustomButton:checked ~ .radioCustomLabel {
-    color: var(--color-accent, #5a7dff);
-    font-weight: 500;
+    color: #d4920a;
+    font-weight: 600;
 }
 
 /* ==========================================================
@@ -220,4 +249,33 @@
     opacity: 1;
     transform: translateY(0);
     transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 640px) {
+    .question {
+        font-size: 20px;
+        padding: 16px 20px 24px;
+    }
+
+    .questionCount {
+        padding: 20px 20px 0;
+    }
+
+    .answerOptions {
+        padding: 0 8px 8px;
+    }
+
+    .radioCustomLabel {
+        font-size: 14px;
+        padding: 16px 16px 16px 50px;
+    }
+
+    .radioCustomButton ~ .radioCustomLabel:before {
+        left: 14px;
+        width: 20px;
+        height: 20px;
+    }
 }

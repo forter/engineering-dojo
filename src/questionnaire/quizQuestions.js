@@ -7,152 +7,161 @@ export const ROLES = {
     "PRINCIPAL": "Principal Software Engineer"
 }
 
+export const CHICKEN_NAMES = {
+    [ROLES.ENTRY]: { name: "Fresh Egg", emoji: "🥚" },
+    [ROLES.NORMAL]: { name: "Hatchling", emoji: "🐣" },
+    [ROLES.SENIOR]: { name: "Free Ranger", emoji: "🐥" },
+    [ROLES.SENIOR_II]: { name: "Head Rooster", emoji: "🐔" },
+    [ROLES.STAFF]: { name: "Golden Goose", emoji: "🪿" },
+    [ROLES.PRINCIPAL]: { name: "Legendary Phoenix", emoji: "🔥" },
+}
+
 export var quizQuestions = [
     {
-        question: "When it’s unclear why you need to build a certain capability, what do you do?",
+        question: "Someone drops a ticket on you with zero context. What’s your move?",
         answers: [
             {
-                content: "As long as I understand the task, it’s fine with me",
+                content: "If I know what to code, I’m good. Context is a luxury.",
                 type: ROLES.ENTRY
             },
             {
-                content: "Ask my manager, this is their job",
+                content: "I’ll ask my manager. That’s literally their job.",
                 type: ROLES.NORMAL
             },
             {
-                content: "I feel comfortable talking with various people (product, sales, etc.) and figuring out the answer",
+                content: "I’ll bug product, sales, whoever — until I get the full picture.",
                 type: ROLES.SENIOR
             },
             {
-                content: "I proactively seek to understand the business needs and talk with internal customers to serve them better",
+                content: "I’m already talking to internal customers proactively. I don’t wait for confusion.",
                 type: ROLES.SENIOR_II
             },
             {
-                content: "I'm usually the one who figures these things out for others, driving alignment across teams",
+                content: "I’m usually the one who figured it out and is explaining it to everyone else.",
                 type: ROLES.STAFF
             },
             {
-                content: "I define and shape the business needs myself, representing them to management and beyond",
+                content: "I define the business needs. The ticket probably originated from my vision.",
                 type: ROLES.PRINCIPAL
-            }
+            },
         ]
     },
     {
-        question: "When you lead projects, how big are they (number of people involved / time)?",
+        question: "How big of an operation are you running around here?",
         answers: [
             {
-                content: "I help with other projects; haven't led one myself yet",
+                content: "I help out on other people’s projects. Haven’t led one yet.",
                 type: ROLES.ENTRY
             },
             {
-                content: "I work by myself / up to a few weeks",
+                content: "Solo missions. A few weeks, me and my headphones.",
                 type: ROLES.NORMAL
             },
             {
-                content: "Me and 2-3 more people from my team / a few weeks to a few months",
+                content: "Me and 2–3 teammates, shipping stuff over a few weeks to months.",
                 type: ROLES.SENIOR
             },
             {
-                content: "I lead large projects (>4w of work) spanning multiple systems with support from peers",
+                content: "Big projects spanning multiple systems, 4+ weeks, with peer support.",
                 type: ROLES.SENIOR_II
             },
             {
-                content: "Me and 5-15 people from various teams, for a few weeks to a few months, driving adoption and momentum",
+                content: "5–15 people across teams. I’m basically a project gravity well.",
                 type: ROLES.STAFF
             },
             {
-                content: "I lead the biggest multi-year cross-group initiatives in the company",
+                content: "The biggest multi-year, cross-org initiatives. If it matters, I’m leading it.",
                 type: ROLES.PRINCIPAL
-            }
+            },
         ]
     },
     {
-        question: "Do you know well the company’s goals for the year and why these goals were chosen?",
+        question: "Quick — what are your company’s goals this year and why?",
         answers: [
             {
-                content: "Not really. I remember some numbers but not more than that. I don’t think it’s needed for me to work.",
+                content: "I remember some numbers from that all-hands. Vibes, mostly.",
                 type: ROLES.ENTRY
             },
             {
-                content: "Yes, I know the goals well. I don't know the rationale for picking them",
+                content: "I know the goals cold. No clue why they were picked though.",
                 type: ROLES.NORMAL
             },
             {
-                content: "I can explain the goals and why they're critical for our success to other teammates",
+                content: "I can explain them to teammates and why they actually matter.",
                 type: ROLES.SENIOR
             },
             {
-                content: "I actively use the company's goals to drive my team's backlog and quarterly planning",
+                content: "I use them to drive my team’s roadmap and quarterly planning.",
                 type: ROLES.SENIOR_II
             },
             {
-                content: "I understand the yearly goals of many teams in the group and how they map to business impact",
+                content: "I know the goals of multiple teams and how they map to real business impact.",
                 type: ROLES.STAFF
             },
             {
-                content: "I use the company's goals to define what the group should invest in and attract talent",
+                content: "I use them to decide what the entire group should invest in and attract talent.",
                 type: ROLES.PRINCIPAL
-            }
+            },
         ]
     },
     {
-        question: "Who usually hears from you?",
+        question: "When you have something to say, who’s actually listening?",
         answers: [
             {
-                content: "I update my manager on my progress.",
+                content: "My manager, when I give status updates.",
                 type: ROLES.ENTRY
             },
             {
-                content: "My teammates. I provide context on my work.",
+                content: "My teammates. I keep them in the loop on what I’m doing.",
                 type: ROLES.NORMAL
             },
             {
-                content: "I tend to update bigger forums around the projects I lead, or things I did to make others’ life easier",
+                content: "Bigger forums — I share project wins and useful stuff I’ve built.",
                 type: ROLES.SENIOR
             },
             {
-                content: "I regularly market and advertise projects, creating excitement for users and driving adoption",
+                content: "I market our projects, create excitement, and drive adoption across teams.",
                 type: ROLES.SENIOR_II
             },
             {
-                content: "It's very common to hear from me on various projects and initiatives. Many people outside of my team know my work.",
+                content: "Everyone. People way outside my team know my name and my work.",
                 type: ROLES.STAFF
             },
             {
-                content: "I represent major company efforts to management, customers, press and conferences.",
+                content: "Management, customers, press, conferences. I represent the company.",
                 type: ROLES.PRINCIPAL
-            }
+            },
         ]
     },
     {
-        question: "If others are working on a big project (>6 months effort), when are they coming to consult with you?",
+        question: "A massive project hits a wall. Are people knocking on your door?",
         answers: [
             {
-                content: "Very rarely. Maybe if it’s around code I wrote.",
+                content: "Only if it involves code I personally wrote.",
                 type: ROLES.ENTRY
             },
             {
-                content: "Here and there. I do have some expertise in specific types of systems or solutions that people want to leverage my knowledge for",
+                content: "Sometimes. I have niche expertise that people tap into here and there.",
                 type: ROLES.NORMAL
             },
             {
-                content: "People consult with me on big projects where I have context - from making sure requirements are solid to the solutions and tradeoffs they have in mind",
+                content: "Yeah — they want my take on requirements, solutions, and tradeoffs.",
                 type: ROLES.SENIOR
             },
             {
-                content: "I contribute to all major architectural decisions in my domain and read all tech specs. People seek me out for complex design reviews",
+                content: "I review every major architectural decision in my domain. People seek me out.",
                 type: ROLES.SENIOR_II
             },
             {
-                content: "People consult with me on everything they feel is a big challenge. Even if I don't have specific context, they feel comfortable sharing and getting my perspective.",
+                content: "People bring me any big challenge. Even without context, they trust my perspective.",
                 type: ROLES.STAFF
             },
             {
-                content: "I'm the go-to person on company-wide critical projects. I create the technical vision and anticipate future needs.",
+                content: "I’m the go-to on company-critical projects. I set the technical vision.",
                 type: ROLES.PRINCIPAL
-            }
+            },
         ]
-    }
+    },
 ];
 
-export default { quizQuestions, ROLES };
+export default { quizQuestions, ROLES, CHICKEN_NAMES };
