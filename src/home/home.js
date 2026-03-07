@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useRef, useCallback, useState } from "react";
 import * as THREE from "three";
+import evoPng from "../assets/evo.png";
 
 /* ─────────────────────────────────────────────
    Game constants
@@ -128,6 +129,14 @@ function Player() {
   body.position.z = 10; body.castShadow = true; body.receiveShadow = true; p.add(body);
   const cap = new THREE.Mesh(new THREE.BoxGeometry(2, 4, 2), new THREE.MeshLambertMaterial({ color: 0xf0619a, flatShading: true }));
   cap.position.z = 21; cap.castShadow = true; cap.receiveShadow = true; p.add(cap);
+  // Wings (hidden by default, shown during fly mode)
+  const wingMat = new THREE.MeshLambertMaterial({ color: 0xf5f0e8, flatShading: true });
+  const leftWing = new THREE.Mesh(new THREE.BoxGeometry(4, 18, 10), wingMat);
+  leftWing.position.set(-10, 0, 12); leftWing.visible = false; p.add(leftWing);
+  const rightWing = new THREE.Mesh(new THREE.BoxGeometry(4, 18, 10), wingMat);
+  rightWing.position.set(10, 0, 12); rightWing.visible = false; p.add(rightWing);
+  p.userData.leftWing = leftWing;
+  p.userData.rightWing = rightWing;
   const container = new THREE.Group();
   container.add(p);
   return container;
@@ -199,7 +208,7 @@ function validPos(cur, moves, meta) {
 /* ─────────────────────────────────────────────
    CrossyGame — React component wrapping the Three.js game
    ───────────────────────────────────────────── */
-function CrossyGame({ onGameStart, onGameOver }) {
+function CrossyGame({ onGameStart, onGameOver, flyStateRef, resetGameRef, onIntroDone }) {
   const canvasRef = useRef(null);
   const gameRef = useRef(null);
   const startedRef = useRef(false);
@@ -254,11 +263,139 @@ function CrossyGame({ onGameStart, onGameOver }) {
     const vehicleClock = new THREE.Clock();
     let gameOver = false;
 
+    // ── Fly-mode state (driven by parent via flyStateRef) ──
+    // "idle" → "walk" → "liftoff" → "fly" → "done"
+    let flyAltitude = 0;
+    let flyY = 0;
+    let flyTime = 0;
+    let flyWalkHops = 0;
+    let flyWalkTimer = 0;
+    const FLY_ALTITUDE_TARGET = 80;
+    const FLY_SPEED_Y = 180; // units/sec forward
+    const FLY_LIFTOFF_DURATION = 0.6; // seconds to reach altitude
+    let liftoffProgress = 0;
+    const flyClock = new THREE.Clock();
+    flyClock.start();
+
+    function getPlayerInner() { return player.children[0]; }
+
+    function showWings(visible) {
+      const inner = getPlayerInner();
+      if (inner.userData.leftWing) inner.userData.leftWing.visible = visible;
+      if (inner.userData.rightWing) inner.userData.rightWing.visible = visible;
+    }
+
+    // Check if a vehicle is dangerously close to a tile position on a given row
+    function isVehicleNearby(rowIndex, tileX) {
+      const row = metadata[rowIndex - 1];
+      if (!row || (row.type !== "car" && row.type !== "truck")) return false;
+      const dangerDist = row.type === "truck" ? 100 : 75;
+      return row.vehicles.some(({ ref }) => {
+        if (!ref) return false;
+        return Math.abs(ref.position.x - tileX * tileSize) < dangerDist;
+      });
+    }
+
+    function animateFlyMode(delta) {
+      const state = flyStateRef ? flyStateRef.current : "done";
+      if (state === "done") return;
+
+      flyTime += delta;
+
+      if (state === "walk") {
+        // Auto-hop forward, 4 hops at ~0.5s intervals, smart about vehicles
+        flyWalkTimer += delta;
+        const HOP_INTERVAL = 0.5;
+        const MAX_HOPS = 4;
+        if (flyWalkTimer > HOP_INTERVAL && flyWalkHops < MAX_HOPS && movesQueue.length === 0) {
+          const targetRow = pos.currentRow + 1;
+          const vehicleAhead = isVehicleNearby(targetRow, pos.currentTile);
+
+          if (!vehicleAhead) {
+            // Path is clear (trees already removed from tile 0) — hop forward
+            movesQueue.push("forward");
+            flyWalkHops++;
+            flyWalkTimer = 0;
+          } else {
+            // Vehicle nearby — wait for it to pass
+            flyWalkTimer = HOP_INTERVAL * 0.7; // retry soon
+          }
+
+          if (flyWalkHops >= MAX_HOPS && flyStateRef) {
+            flyStateRef.current = "liftoff";
+            flyY = player.position.y; // snapshot current Y so fly continues from here
+            showWings(true);
+            liftoffProgress = 0;
+          }
+        }
+      }
+
+      if (state === "liftoff") {
+        liftoffProgress += delta / FLY_LIFTOFF_DURATION;
+        if (liftoffProgress >= 1) { liftoffProgress = 1; if (flyStateRef) flyStateRef.current = "fly"; }
+        flyAltitude = THREE.MathUtils.lerp(0, FLY_ALTITUDE_TARGET, liftoffProgress * liftoffProgress);
+        getPlayerInner().position.z = flyAltitude;
+        // Wing flap during liftoff
+        const flapAngle = Math.sin(flyTime * 14) * 0.6;
+        if (getPlayerInner().userData.leftWing) getPlayerInner().userData.leftWing.rotation.y = flapAngle;
+        if (getPlayerInner().userData.rightWing) getPlayerInner().userData.rightWing.rotation.y = -flapAngle;
+      }
+
+      if (state === "fly") {
+        // Glide forward, high above everything
+        flyY += FLY_SPEED_Y * delta;
+        player.position.y = flyY;
+        // Gentle bob
+        getPlayerInner().position.z = FLY_ALTITUDE_TARGET + Math.sin(flyTime * 3) * 4;
+        // Wing flap (slower in cruise)
+        const flapAngle = Math.sin(flyTime * 8) * 0.35;
+        if (getPlayerInner().userData.leftWing) getPlayerInner().userData.leftWing.rotation.y = flapAngle;
+        if (getPlayerInner().userData.rightWing) getPlayerInner().userData.rightWing.rotation.y = -flapAngle;
+        // Slight tilt forward
+        getPlayerInner().rotation.x = -0.15;
+      }
+    }
+
+    // Expose a reset function so parent can reinit the game after intro
+    if (resetGameRef) {
+      resetGameRef.current = () => { initGame(); showWings(false); };
+    }
+
     function initMap() {
       metadata.length = 0;
       map.remove(...map.children);
       for (let i = 0; i > -10; i--) map.add(Grass(i));
-      addRowsToMap();
+      // Clear tile 0 in the first few forest rows so cinematic chicken walks straight
+      if (flyStateRef && flyStateRef.current === "walk") {
+        const cinRows = generateRows(20);
+        cinRows.forEach((rd) => {
+          if (rd.type === "forest") {
+            rd.trees = rd.trees.filter((t) => t.tileIndex !== 0);
+          }
+        });
+        const start = metadata.length;
+        metadata.push(...cinRows);
+        cinRows.forEach((rd, i) => {
+          const ri = start + i + 1;
+          if (rd.type === "forest") {
+            const row = Grass(ri);
+            rd.trees.forEach(({ tileIndex: ti, height: ht }) => row.add(Tree(ti, ht)));
+            map.add(row);
+          }
+          if (rd.type === "car") {
+            const row = Road(ri);
+            rd.vehicles.forEach((v) => { const c = Car(v.initialTileIndex, rd.direction, v.color); v.ref = c; row.add(c); });
+            map.add(row);
+          }
+          if (rd.type === "truck") {
+            const row = Road(ri);
+            rd.vehicles.forEach((v) => { const c = Truck(v.initialTileIndex, rd.direction, v.color); v.ref = c; row.add(c); });
+            map.add(row);
+          }
+        });
+      } else {
+        addRowsToMap();
+      }
     }
 
     function addRowsToMap() {
@@ -288,8 +425,11 @@ function CrossyGame({ onGameStart, onGameOver }) {
     function initPlayer() {
       player.position.x = 0; player.position.y = 0;
       player.children[0].position.z = 0;
+      player.children[0].rotation.x = 0;
+      player.children[0].rotation.z = 0;
       pos.currentRow = 0; pos.currentTile = 0;
       movesQueue.length = 0;
+      flyAltitude = 0; flyY = 0; flyTime = 0; flyWalkHops = 0; flyWalkTimer = 0; liftoffProgress = 0;
     }
 
     function initGame() {
@@ -302,9 +442,9 @@ function CrossyGame({ onGameStart, onGameOver }) {
       if (rc) rc.style.visibility = "hidden";
     }
 
-    function queueMove(d) {
+    function queueMove(d, isAuto) {
       if (gameOver) return;
-      handleStart();
+      if (!isAuto) handleStart();
       if (!validPos({ rowIndex: pos.currentRow, tileIndex: pos.currentTile }, [...movesQueue, d], metadata)) return;
       movesQueue.push(d);
     }
@@ -359,7 +499,7 @@ function CrossyGame({ onGameStart, onGameOver }) {
     }
 
     function hitTest() {
-      if (gameOver) return;
+      if (gameOver || (flyStateRef && flyStateRef.current !== "done")) return;
       const row = metadata[pos.currentRow - 1];
       if (!row) return;
       if (row.type === "car" || row.type === "truck") {
@@ -380,7 +520,8 @@ function CrossyGame({ onGameStart, onGameOver }) {
     }
 
     function animate() {
-      animateVehicles(); animatePlayer(); hitTest();
+      const delta = flyClock.getDelta();
+      animateVehicles(); animatePlayer(); animateFlyMode(delta); hitTest();
       renderer.render(scene, camera);
     }
 
@@ -389,6 +530,7 @@ function CrossyGame({ onGameStart, onGameOver }) {
 
     // Controls
     const onKey = (e) => {
+      if (flyStateRef && flyStateRef.current !== "done") return;
       if (e.key === "ArrowUp") { e.preventDefault(); queueMove("forward"); }
       else if (e.key === "ArrowDown") { e.preventDefault(); queueMove("backward"); }
       else if (e.key === "ArrowLeft") { e.preventDefault(); queueMove("left"); }
@@ -403,6 +545,7 @@ function CrossyGame({ onGameStart, onGameOver }) {
       touchStartY = e.touches[0].clientY;
     };
     const onTouchEnd = (e) => {
+      if (flyStateRef && flyStateRef.current !== "done") return;
       const dx = e.changedTouches[0].clientX - touchStartX;
       const dy = e.changedTouches[0].clientY - touchStartY;
       const absDx = Math.abs(dx), absDy = Math.abs(dy);
@@ -517,11 +660,104 @@ export default function Home() {
     setDiedBefore(true);
   }, []);
 
+  /* ── Cinematic intro ──
+     Phases: "walk" → "fly" → "fadeout" → "reveal" → "done"
+     walk:    chicken hops forward, headline appears over the game
+     fly:     chicken lifts off + glides, subtitle appears over the game
+     fadeout: opaque black overlay, game resets behind it
+     reveal:  black dissolves to gradient, sub-text + CTA appear
+     done:    normal interactive state
+  */
+  const [introPhase, setIntroPhase] = useState("walk"); // walk|fly|fadeout|reveal|done
+  const flyStateRef = useRef("walk"); // synced state for the render loop (no re-renders)
+  const resetGameRef = useRef(null);
+  const introSkippedRef = useRef(false);
+  const introDone = introPhase === "done";
+
+  // Lock scroll to top during cinematic
+  useEffect(() => {
+    if (!introDone) window.scrollTo(0, 0);
+  }, [introDone]);
+
+  // Advance flyStateRef → React introPhase bridge
+  // CrossyGame drives walk→liftoff→fly internally via flyStateRef.
+  // We poll to detect when fly starts, then schedule fadeout.
+  useEffect(() => {
+    if (introDone) return;
+    const pollId = setInterval(() => {
+      const s = flyStateRef.current;
+      if (s === "fly" && introPhase === "walk") setIntroPhase("fly");
+    }, 100);
+    return () => clearInterval(pollId);
+  }, [introPhase, introDone]);
+
+  // fly → fadeout after 1.5s of flying
+  useEffect(() => {
+    if (introPhase !== "fly") return;
+    const id = setTimeout(() => {
+      if (!introSkippedRef.current) {
+        flyStateRef.current = "done";
+        setIntroPhase("fadeout");
+      }
+    }, 1500);
+    return () => clearTimeout(id);
+  }, [introPhase]);
+
+  // fadeout → reveal: fade in black (0.7s), reset game behind it, then reveal
+  useEffect(() => {
+    if (introPhase !== "fadeout") return;
+    const id = setTimeout(() => {
+      if (!introSkippedRef.current) {
+        if (resetGameRef.current) resetGameRef.current();
+        setIntroPhase("reveal");
+      }
+    }, 800);
+    return () => clearTimeout(id);
+  }, [introPhase]);
+
+  // reveal → done: black fades out (1s) + staggered text finishes
+  useEffect(() => {
+    if (introPhase !== "reveal") return;
+    const id = setTimeout(() => setIntroPhase("done"), 1200);
+    return () => clearTimeout(id);
+  }, [introPhase]);
+
+  // Skip intro on any interaction
+  const skipIntro = useCallback(() => {
+    if (introSkippedRef.current) return;
+    introSkippedRef.current = true;
+    flyStateRef.current = "done";
+    if (resetGameRef.current) resetGameRef.current();
+    setIntroPhase("done");
+  }, []);
+
+  useEffect(() => {
+    if (introDone) return;
+    window.addEventListener("keydown", skipIntro);
+    window.addEventListener("click", skipIntro);
+    window.addEventListener("touchstart", skipIntro);
+    return () => {
+      window.removeEventListener("keydown", skipIntro);
+      window.removeEventListener("click", skipIntro);
+      window.removeEventListener("touchstart", skipIntro);
+    };
+  }, [introDone, skipIntro]);
+
+  // Compute hero overlay class
+  const heroPhaseClass = (() => {
+    if (gameStarted) return " hero-hidden";
+    if (introPhase === "walk") return " hero-walk";
+    if (introPhase === "fly") return " hero-fly";
+    if (introPhase === "fadeout") return " hero-fadeout";
+    if (introPhase === "reveal") return " hero-reveal";
+    return " hero-ready";
+  })();
+
   return (
-    <div className={`home-page-v2${gameStarted ? " game-active" : ""}${firstDeath ? " first-death-active" : ""}`}>
+    <div className={`home-page-v2${gameStarted ? " game-active" : ""}${firstDeath ? " first-death-active" : ""}${!introDone ? " intro-cinematic" : ""}`}>
 
       {/* ───── GAME CANVAS (always mounted, behind everything) ───── */}
-      <CrossyGame onGameStart={handleGameStart} onGameOver={handleGameOver} />
+      <CrossyGame onGameStart={handleGameStart} onGameOver={handleGameOver} flyStateRef={flyStateRef} resetGameRef={resetGameRef} />
 
       {/* ───── FIRST DEATH MODAL ───── */}
       {firstDeath && (
@@ -544,11 +780,11 @@ export default function Home() {
       )}
 
       {/* ───── HERO OVERLAY (above the fold) ───── */}
-      <section className={`hero-overlay${gameStarted ? " hero-hidden" : ""}`}>
+      <section className={`hero-overlay${heroPhaseClass}`}>
         <div className="hero-overlay-inner">
           <h1 className="hero-headline">
             The chicken crossed the road.<br />
-            <span className="hero-highlight">Your PR is still in review.</span>
+            <span className="hero-highlight">We're here to help you fly.</span>
           </h1>
           <p className="hero-sub">
             You're the chicken. The road is your career. The trucks are production incidents at 2 AM.<br />
@@ -560,23 +796,20 @@ export default function Home() {
               <span className="cta-text">Am I Cooked?</span>
               <span className="cta-arrow">&rarr;</span>
             </Link>
-            <button className="cta-play" onClick={() => setGameStarted(true)}>
-              &#9654; Play the Game
-            </button>
           </div>
           <p className="hero-note">Free. No sign-up. No "let's circle back." Just answers.</p>
-          <div className="scroll-hint">
-            Or scroll — we don't judge<br /><span>&#8595;</span>
-          </div>
+        </div>
+        <div className="hero-peek">
         </div>
       </section>
 
       {/* ───── BELOW-THE-FOLD CONTENT (scrollable) ───── */}
-      <div className={`below-fold${gameStarted ? " below-fold-hidden" : ""}`}>
+      <div className={`below-fold${gameStarted || !introDone ? " below-fold-hidden" : ""}`}>
 
         <section className="section-what">
           <div className="section-inner">
             <h2 className="section-heading">From <span className="accent">Egg to Absolute Unit</span></h2>
+            <img src={evoPng} alt="Career evolution from egg to phoenix" className="evo-image" />
             <p className="section-text">
               Every senior engineer was once a mass of uncertainty Googling "what is a pointer."
               The difference? They stopped <em>pretending</em> and started leveling up on purpose.
