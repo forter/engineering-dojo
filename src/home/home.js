@@ -557,7 +557,7 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <Link to="/questionnaire" className="cta-primary">
-              <span className="cta-text">🍳 Am I Cooked?</span>
+              <span className="cta-text">Am I Cooked?</span>
               <span className="cta-arrow">&rarr;</span>
             </Link>
             <button className="cta-play" onClick={() => setGameStarted(true)}>
