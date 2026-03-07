@@ -83,9 +83,9 @@ export class Questionnaire extends Component {
         this.setUserAnswer(event.currentTarget.value);
 
         if (this.state.questionId < quizQuestions.length) {
-            setTimeout(() => this.setNextQuestion(), 300);
+            setTimeout(() => this.setNextQuestion(), 600);
         } else {
-            setTimeout(() => this.setResults(this.getResults()), 300);
+            setTimeout(() => this.setResults(this.getResults()), 600);
         }
     }
 

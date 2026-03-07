@@ -1,27 +1,39 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import sprite1 from '../assets/sprite-1-egg.png';
-import sprite2 from '../assets/sprite-2-chick.png';
-import sprite3 from '../assets/sprite-3-chicken.png';
-import sprite4 from '../assets/sprite-4-jetpack.png';
-import sprite5 from '../assets/sprite-5-mech.png';
-
 function QuestionCount(props) {
-  const stages = [sprite1, sprite2, sprite3, sprite4, sprite5];
-  const sprite = stages[Math.min(props.counter - 1, stages.length - 1)];
   const progress = (props.counter / props.total) * 100;
+  const prevCounter = useRef(props.counter);
+  const [bump, setBump] = useState(false);
+
+  useEffect(() => {
+    if (props.counter !== prevCounter.current) {
+      prevCounter.current = props.counter;
+      setBump(true);
+      const t = setTimeout(() => setBump(false), 400);
+      return () => clearTimeout(t);
+    }
+  }, [props.counter]);
 
   return (
     <div className="questionCount">
       <div className="questionCount-header">
-        <img src={sprite} alt="" className="questionCount-sprite" />
         <span className="questionCount-text">
-          Question <span>{props.counter}</span> of <span>{props.total}</span>
+          Question <span className={bump ? 'qc-number-bump' : ''}>{props.counter}</span> of <span>{props.total}</span>
         </span>
       </div>
-      <div className="questionCount-bar">
-        <div className="questionCount-fill" style={{ width: `${progress}%` }} />
+      <div className="questionCount-track">
+        <div className="questionCount-bar">
+          <div className="questionCount-fill" style={{ width: `${progress}%` }} />
+        </div>
+        <div className="questionCount-dots">
+          {Array.from({ length: props.total }, (_, i) => (
+            <span
+              key={i}
+              className={`qc-dot${i < props.counter ? ' qc-dot--done' : ''}${i === props.counter - 1 ? ' qc-dot--active' : ''}`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

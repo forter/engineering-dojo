@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransitionGroup } from 'react-transition-group';
 import './Result.css';
 import {Link} from 'react-router-dom';
 import { CHICKEN_NAMES, ROLES } from '../questionnaire/quizQuestions';
@@ -35,6 +34,45 @@ const ROLE_SPRITES = {
   [ROLES.PRINCIPAL]: sprite6,
 };
 
+// Chicken-themed confetti emojis
+const CONFETTI_ITEMS = ['🐔', '🐣', '🥚', '🪶', '🐥', '✨', '🔥', '🪿'];
+
+function Confetti() {
+  const [particles] = useState(() =>
+    Array.from({ length: 40 }, (_, i) => ({
+      id: i,
+      emoji: CONFETTI_ITEMS[i % CONFETTI_ITEMS.length],
+      left: Math.random() * 100,
+      delay: Math.random() * 0.8,
+      duration: 1.5 + Math.random() * 1.5,
+      size: 16 + Math.random() * 14,
+      drift: (Math.random() - 0.5) * 60,
+      rotation: Math.random() * 360,
+    }))
+  );
+
+  return (
+    <div className="confetti-container" aria-hidden="true">
+      {particles.map(p => (
+        <span
+          key={p.id}
+          className="confetti-particle"
+          style={{
+            left: `${p.left}%`,
+            fontSize: `${p.size}px`,
+            animationDelay: `${p.delay}s`,
+            animationDuration: `${p.duration}s`,
+            '--drift': `${p.drift}px`,
+            '--rotation': `${p.rotation}deg`,
+          }}
+        >
+          {p.emoji}
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function Result(props) {
   const parsedRole = props.quizResult.toLowerCase().split(" ").join("-");
   const chicken = CHICKEN_NAMES[props.quizResult] || { name: props.quizResult, emoji: "" };
@@ -44,20 +82,24 @@ function Result(props) {
   const nextRole = currentIndex < ROLE_ORDER.length - 1 ? ROLE_ORDER[currentIndex + 1] : null;
   const toSlug = (role) => '/questionnaire/result/' + role.toLowerCase().split(' ').join('-');
 
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    // Trigger confetti burst on mount
+    setShowConfetti(true);
+    const revealTimer = setTimeout(() => setRevealed(true), 100);
+    const confettiTimer = setTimeout(() => setShowConfetti(false), 3000);
+    return () => { clearTimeout(revealTimer); clearTimeout(confettiTimer); };
+  }, []);
+
   return (
-    <CSSTransitionGroup
-      className="container result"
-      component="div"
-      transitionName="fade"
-      transitionEnterTimeout={800}
-      transitionLeaveTimeout={500}
-      transitionAppear
-      transitionAppearTimeout={500}
-    >
+    <div className={`container result${revealed ? ' result--revealed' : ''}`}>
       <div className="result-page">
         {/* Hero spans full width */}
         <div className="result-hero-row">
           <div className="result-hero">
+            {showConfetti && <Confetti />}
             <img src={ROLE_SPRITES[props.quizResult]} alt={chicken.name} className="result-sprite" />
             <h2 className="result-title">You're a <strong>{chicken.name}</strong></h2>
             <p className="result-role">{props.quizResult}</p>
@@ -125,7 +167,7 @@ function Result(props) {
           </div>
         </div>
       </div>
-    </CSSTransitionGroup>
+    </div>
   );
 }
 

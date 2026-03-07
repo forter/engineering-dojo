@@ -557,7 +557,7 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <Link to="/questionnaire" className="cta-primary">
-              <span className="cta-text">Am I Cooked?</span>
+              <span className="cta-text">🍳 Am I Cooked?</span>
               <span className="cta-arrow">&rarr;</span>
             </Link>
             <button className="cta-play" onClick={() => setGameStarted(true)}>
@@ -590,7 +590,7 @@ export default function Home() {
             <h2 className="section-heading">Two ways to stop winging it</h2>
             <div className="path-cards">
               <Link to="/questionnaire" className="path-card path-card-quiz">
-                <span className="path-icon">🥚</span>
+                <span className="path-icon">🍳</span>
                 <span className="path-title">Am I Cooked?</span>
                 <span className="path-desc">Answer a few honest questions. Find out if you're a free-range senior or still in the incubator.</span>
               </Link>
@@ -600,8 +600,8 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="path-card path-card-ladder"
               >
-                <span className="path-icon">🐔</span>
-                <span className="path-title">The Pecking Order</span>
+                <span className="path-icon">🥚</span>
+                <span className="path-title">The Egg-xpectations</span>
                 <span className="path-desc">The full career framework. See exactly what separates the hatchlings from the roosters.</span>
               </a>
             </div>

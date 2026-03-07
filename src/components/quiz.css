@@ -8,8 +8,6 @@
     text-align: center;
 }
 
-
-
 .quiz-subtitle {
     font-size: 15px;
     color: rgba(42, 37, 32, 0.4);
@@ -58,7 +56,31 @@
 }
 
 /* ==========================================================
-   QUESTION COUNT — progress bar with chicken evolution
+   SLIDE TRANSITIONS — smooth enter/exit
+   ========================================================== */
+.q-slide {
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+}
+
+.q-slide--enter {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+}
+
+.q-slide--active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.q-slide--exit {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
+}
+
+/* ==========================================================
+   QUESTION COUNT — progress bar with step dots
    ========================================================== */
 .questionCount {
     padding: 28px 32px 0;
@@ -71,11 +93,16 @@
     margin-bottom: 14px;
 }
 
-.questionCount-sprite {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-    image-rendering: pixelated;
+/* Subtle bump when question number changes */
+.qc-number-bump {
+    display: inline-block;
+    animation: numberBump 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes numberBump {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.4) translateY(-2px); }
+    100% { transform: scale(1); }
 }
 
 .questionCount-text {
@@ -90,20 +117,69 @@
     color: var(--color-accent, #d4920a);
 }
 
+.questionCount-track {
+    position: relative;
+}
+
 .questionCount-bar {
     width: 100%;
     height: 4px;
-    background: rgba(42, 37, 32, 0.08);
+    background: rgba(42, 37, 32, 0.06);
     border-radius: 4px;
     overflow: hidden;
 }
 
 .questionCount-fill {
     height: 100%;
-    background: linear-gradient(90deg, #d4920a, #b8800a);
+    background: linear-gradient(90deg, #d4920a, #f5b731);
     border-radius: 4px;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 0 12px rgba(212, 146, 10, 0.3);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 16px rgba(212, 146, 10, 0.35);
+    position: relative;
+}
+
+.questionCount-fill::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -2px;
+    width: 8px;
+    height: 8px;
+    background: #f5b731;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(245, 183, 49, 0.6);
+}
+
+.questionCount-dots {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.qc-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(42, 37, 32, 0.1);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    flex-shrink: 0;
+}
+
+.qc-dot--done {
+    background: var(--color-accent, #d4920a);
+    box-shadow: 0 0 6px rgba(212, 146, 10, 0.3);
+}
+
+.qc-dot--active {
+    background: var(--color-accent, #d4920a);
+    transform: scale(1.5);
+    box-shadow: 0 0 10px rgba(212, 146, 10, 0.5);
+    animation: dotPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes dotPulse {
+    0%, 100% { transform: scale(1.5); box-shadow: 0 0 10px rgba(212, 146, 10, 0.5); }
+    50%      { transform: scale(1.8); box-shadow: 0 0 16px rgba(212, 146, 10, 0.7); }
 }
 
 /* ==========================================================
@@ -112,7 +188,7 @@
 .question {
     color: var(--color-text, #2a2520);
     margin: 0;
-    padding: 20px 32px 28px;
+    padding: 24px 32px 28px;
     font-size: 24px;
     font-weight: 700;
     line-height: 1.35;
@@ -120,26 +196,57 @@
 }
 
 /* ==========================================================
-   ANSWER OPTIONS
+   ANSWER OPTIONS — card-style with letter badges
    ========================================================== */
 .answerOptions {
     margin: 0;
-    padding: 0 12px 12px;
+    padding: 0 16px 16px;
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
 }
 
 .answerOption {
-    border-radius: 16px;
-    transition: all 0.25s ease;
+    border-radius: 14px;
     position: relative;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: answerSlideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@keyframes answerSlideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .answerOption:hover {
-    background: rgba(212, 146, 10, 0.08);
-    transform: translateX(4px);
+    background: rgba(212, 146, 10, 0.06);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.answerOption--selected {
+    background: rgba(212, 146, 10, 0.1) !important;
+    transform: scale(1) !important;
+    animation: answerSelect 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 16px rgba(212, 146, 10, 0.15) !important;
+}
+
+@keyframes answerSelect {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(0.97); }
+    70%  { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.answerOption--dimmed {
+    opacity: 0.4;
+    pointer-events: none;
+    transform: scale(0.98);
 }
 
 /* Hidden native radio */
@@ -156,41 +263,51 @@
     cursor: pointer;
 }
 
-/* Answer label text */
+/* Answer label — flex layout with letter badge */
 .radioCustomLabel {
     position: relative;
-    width: calc(100% - 80px);
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    width: 100%;
     margin: 0;
-    padding: 18px 24px 18px 58px;
-    font-size: 15px;
-    line-height: 1.5;
+    padding: 16px 20px;
     top: 0;
     left: 0;
-    color: rgba(42, 37, 32, 0.65);
-    transition: all 0.25s ease;
+    color: rgba(42, 37, 32, 0.7);
+    transition: color 0.25s ease;
+    box-sizing: border-box;
 }
 
-/* Custom radio circle */
-.radioCustomButton ~ .radioCustomLabel:before {
-    position: absolute;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    width: 22px;
-    height: 22px;
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    background: rgba(42, 37, 32, 0.04);
-    border: 2px solid rgba(42, 37, 32, 0.15);
-    border-radius: 50%;
+/* Letter badge (A, B, C...) */
+.answer-letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background: rgba(42, 37, 32, 0.05);
+    border: 1.5px solid rgba(42, 37, 32, 0.12);
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(42, 37, 32, 0.35);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 1px;
 }
 
-/* Hover state for radio */
-.answerOption:hover .radioCustomButton ~ .radioCustomLabel:before {
-    border-color: rgba(212, 146, 10, 0.5);
+.answer-text {
+    font-size: 15px;
+    line-height: 1.55;
+    padding-top: 4px;
+}
+
+/* Hover state for letter badge */
+.answerOption:hover .answer-letter {
+    border-color: rgba(212, 146, 10, 0.4);
     background: rgba(212, 146, 10, 0.08);
+    color: rgba(212, 146, 10, 0.7);
 }
 
 .answerOption:hover .radioCustomLabel {
@@ -198,57 +315,28 @@
 }
 
 /* Checked state */
-.radioCustomButton:checked ~ .radioCustomLabel:before {
-    content: '';
-    background: #d4920a url('../assets/icon-check.svg') no-repeat center;
-    background-size: 16px;
-    border-color: #d4920a;
+.radioCustomButton:checked ~ .radioCustomLabel .answer-letter {
+    background: var(--color-accent, #d4920a);
+    border-color: var(--color-accent, #d4920a);
+    color: white;
     box-shadow: 0 2px 12px rgba(212, 146, 10, 0.4);
+    animation: letterPop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes letterPop {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
 
 .radioCustomButton:checked ~ .radioCustomLabel {
-    color: #d4920a;
+    color: var(--color-text, #2a2520);
+    font-weight: 500;
+}
+
+.radioCustomButton:checked ~ .radioCustomLabel .answer-text {
+    color: var(--color-accent, #d4920a);
     font-weight: 600;
-}
-
-/* ==========================================================
-   FADE TRANSITIONS
-   ========================================================== */
-.fade-enter {
-    opacity: 0;
-    transform: translateX(20px);
-}
-
-.fade-enter.fade-enter-active {
-    opacity: 1;
-    transform: translateX(0);
-    transition: opacity 0.4s ease-in-out 0.2s, transform 0.4s ease-in-out 0.2s;
-}
-
-.fade-leave {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.fade-leave.fade-leave-active {
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
-}
-
-.fade-appear {
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-.fade-appear.fade-appear-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
 /* ==========================================================
@@ -257,7 +345,7 @@
 @media (max-width: 640px) {
     .question {
         font-size: 20px;
-        padding: 16px 20px 24px;
+        padding: 18px 20px 24px;
     }
 
     .questionCount {
@@ -265,17 +353,24 @@
     }
 
     .answerOptions {
-        padding: 0 8px 8px;
+        padding: 0 10px 10px;
     }
 
     .radioCustomLabel {
-        font-size: 14px;
-        padding: 16px 16px 16px 50px;
+        padding: 14px 14px;
+        gap: 12px;
     }
 
-    .radioCustomButton ~ .radioCustomLabel:before {
-        left: 14px;
-        width: 20px;
-        height: 20px;
+    .answer-letter {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        font-size: 12px;
     }
+
+    .answer-text {
+        font-size: 14px;
+        padding-top: 3px;
+    }
+
 }
