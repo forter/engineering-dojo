@@ -45,6 +45,20 @@ export class Questionnaire extends Component {
         });
     }
 
+    componentDidUpdate(prevProps) {
+        const prevLevel = prevProps.match.params.level;
+        const newLevel = this.props.match.params.level;
+        if (newLevel && newLevel !== prevLevel) {
+            const roleValues = Object.values(ROLES);
+            const match = roleValues.find(
+                r => r.toLowerCase().split(' ').join('-') === newLevel
+            );
+            if (match) {
+                this.setState({ result: match });
+            }
+        }
+    }
+
     shuffleArray(array) {
         var currentIndex = array.length,
             temporaryValue,
@@ -69,9 +83,9 @@ export class Questionnaire extends Component {
         this.setUserAnswer(event.currentTarget.value);
 
         if (this.state.questionId < quizQuestions.length) {
-            setTimeout(() => this.setNextQuestion(), 300);
+            setTimeout(() => this.setNextQuestion(), 600);
         } else {
-            setTimeout(() => this.setResults(this.getResults()), 300);
+            setTimeout(() => this.setResults(this.getResults()), 600);
         }
     }
 
@@ -170,9 +184,13 @@ export class Questionnaire extends Component {
     render() {
         return (
             <div className="quiz">
-                <h1><Link to="/"> Home </Link> <gray>/</gray> Getting To Know You</h1>
+                <div className="quiz-header">
+                    <p className="breadcrumb"><Link to="/">Home</Link><span className="sep">/</span>Are You Cooked?</p>
+                    {!this.state.result && (
+                        <p className="quiz-subtitle">Answer honestly. The chicken is watching.</p>
+                    )}
+                </div>
                 <div className="questionnaire">
-                    <div className="questionnaire-group" />
                     {this.state.result ? this.renderResult() : this.renderQuiz()}
                 </div>
             </div>

@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransitionGroup } from 'react-transition-group';
 import Question from '../components/Question';
 import QuestionCount from '../components/QuestionCount';
 import AnswerOption from '../components/AnswerOption';
@@ -8,7 +7,63 @@ import AnswerOption from '../components/AnswerOption';
 import './quiz.css';
 
 function Quiz(props) {
-  function renderAnswerOptions(key) {
+  const [phase, setPhase] = useState('enter'); // 'enter' | 'active' | 'exit'
+  const prevIdRef = useRef(props.questionId);
+  const [buffered, setBuffered] = useState(null);
+
+  // Keep a ref of the last rendered content so we can freeze it on exit
+  const snapshotRef = useRef({
+    questionId: props.questionId,
+    question: props.question,
+    answerOptions: props.answerOptions,
+  });
+
+  // Derive what to display: buffered (during exit) or live props
+  const display = buffered || {
+    questionId: props.questionId,
+    question: props.question,
+    answerOptions: props.answerOptions,
+  };
+
+  // Keep snapshot in sync — but only when we're stable (not the render where
+  // questionId just changed, which would overwrite old content before the effect
+  // can buffer it).
+  if (!buffered && props.questionId === prevIdRef.current) {
+    snapshotRef.current = {
+      questionId: props.questionId,
+      question: props.question,
+      answerOptions: props.answerOptions,
+    };
+  }
+
+  useEffect(() => {
+    if (props.questionId !== prevIdRef.current) {
+      // Freeze the PREVIOUS content (from snapshot) and start exit
+      setBuffered({ ...snapshotRef.current });
+      setPhase('exit');
+
+      const timer = setTimeout(() => {
+        setBuffered(null); // release buffer → show new props
+        prevIdRef.current = props.questionId;
+        setPhase('enter');
+        // Double rAF ensures the browser paints the 'enter' frame before transitioning
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => setPhase('active'));
+        });
+      }, 350);
+      return () => clearTimeout(timer);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.questionId]);
+
+  useEffect(() => {
+    // Initial mount
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => setPhase('active'));
+    });
+  }, []);
+
+  function renderAnswerOptions(key, index) {
     return (
       <AnswerOption
         key={key.content}
@@ -17,28 +72,22 @@ function Quiz(props) {
         answer={props.answer}
         questionId={props.questionId}
         onAnswerSelected={props.onAnswerSelected}
+        index={index}
+        phase={phase}
       />
     );
   }
 
   return (
-    <CSSTransitionGroup
-      className="container"
-      component="div"
-      transitionName="fade"
-      transitionEnterTimeout={800}
-      transitionLeaveTimeout={500}
-      transitionAppear
-      transitionAppearTimeout={500}
-    >
-      <div key={props.questionId}>
-        <QuestionCount counter={props.questionId} total={props.questionTotal} />
-        <Question content={props.question} />
+    <div className="container">
+      <QuestionCount counter={props.questionId} total={props.questionTotal} />
+      <div className={`q-slide q-slide--${phase}`}>
+        <Question content={display.question} />
         <ul className="answerOptions">
-          {props.answerOptions.map(renderAnswerOptions)}
+          {display.answerOptions.map(renderAnswerOptions)}
         </ul>
       </div>
-    </CSSTransitionGroup>
+    </div>
   );
 }
 
