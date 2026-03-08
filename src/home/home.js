@@ -272,7 +272,7 @@ function CrossyGame({ onGameStart, onGameOver, flyStateRef, resetGameRef, onIntr
     let flyWalkTimer = 0;
     const FLY_ALTITUDE_TARGET = 80;
     const FLY_SPEED_Y = 180; // units/sec forward
-    const FLY_LIFTOFF_DURATION = 0.6; // seconds to reach altitude
+    const FLY_LIFTOFF_DURATION = 0.9; // seconds to reach altitude
     let liftoffProgress = 0;
     const flyClock = new THREE.Clock();
     flyClock.start();
@@ -322,19 +322,36 @@ function CrossyGame({ onGameStart, onGameOver, flyStateRef, resetGameRef, onIntr
           }
 
           if (flyWalkHops >= MAX_HOPS && flyStateRef) {
-            flyStateRef.current = "liftoff";
-            flyY = player.position.y; // snapshot current Y so fly continues from here
-            showWings(true);
-            liftoffProgress = 0;
+            // Wait for the last hop animation to finish before liftoff
+            flyStateRef.current = "wait-liftoff";
           }
+        }
+      }
+
+      if (state === "wait-liftoff") {
+        // Let the hop animation complete (movesQueue drains)
+        if (movesQueue.length === 0) {
+          flyStateRef.current = "liftoff";
+          flyY = player.position.y;
+          showWings(true);
+          liftoffProgress = 0;
+          // Reset inner z and rotation for clean liftoff
+          getPlayerInner().position.z = 0;
+          getPlayerInner().rotation.z = 0;
         }
       }
 
       if (state === "liftoff") {
         liftoffProgress += delta / FLY_LIFTOFF_DURATION;
         if (liftoffProgress >= 1) { liftoffProgress = 1; if (flyStateRef) flyStateRef.current = "fly"; }
-        flyAltitude = THREE.MathUtils.lerp(0, FLY_ALTITUDE_TARGET, liftoffProgress * liftoffProgress);
+        const eased = liftoffProgress * liftoffProgress;
+        flyAltitude = THREE.MathUtils.lerp(0, FLY_ALTITUDE_TARGET, eased);
         getPlayerInner().position.z = flyAltitude;
+        // Ease rotation forward during liftoff
+        getPlayerInner().rotation.x = THREE.MathUtils.lerp(0, -0.15, eased);
+        // Start moving forward gradually during liftoff
+        flyY += FLY_SPEED_Y * 0.3 * delta;
+        player.position.y = flyY;
         // Wing flap during liftoff
         const flapAngle = Math.sin(flyTime * 14) * 0.6;
         if (getPlayerInner().userData.leftWing) getPlayerInner().userData.leftWing.rotation.y = flapAngle;
